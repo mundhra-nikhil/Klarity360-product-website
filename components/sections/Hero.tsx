@@ -66,7 +66,7 @@ export default function Hero({ showAnnouncement, barRef }: HeroProps) {
 
         <div id="hero-content" ref={heroContentRef}>
           <h1 className="hero-h1">
-            Data Reconciliation &<br />Validation Platform
+            Data Validation<br />& Reconciliation
           </h1>
           <p className="hero-sub">
             {PRODUCT_NAME} compares datasets across systems to help QA and business users validate migrated or transformed data. Engineered with a Secure-by-Design and Secure-by-Default philosophy.
