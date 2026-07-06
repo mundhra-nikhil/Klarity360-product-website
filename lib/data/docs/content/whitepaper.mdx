@@ -1,0 +1,230 @@
+| **Document Information**  | **Details**  |
+| --- | --- |
+| Document No.  | White Paper/Klarity360/02/2026/1  |
+| Document Description  | Klarity360 – White Paper |
+| Version No.  | 1.0  |
+| Prepared By  | Kanerika Technical Team  |
+| Reviewed By  | Kanerika Business Team |
+| Release Date  | February 2026  |
+
+## Contact Details 
+
+| **Information**  | **Details**  |
+| --- | --- |
+| Address  | Kanerika Inc., Summit Executive Centre 13706 Research Blvd, Suite 211 D Austin, TX – 78750  |
+| Phone  | +1 224.383.7877  |
+| Website  | [www.kanerika.com](https://www.kanerika.com/)  |
+| Sales E-mail ID  | sales@kanerika.com  |
+
+## **Klarity360 – Insight Agent**
+
+AI-Driven, On-the-Go Analysis and Dashboarding for Everyone
+
+## **Abstract**
+
+In today’s fast-paced, data-driven world, decision-makers are often restricted by the technical limitations of traditional data analysis tools. _Klarity360 – Insight Agent_ addresses these limitations with an intelligent, intuitive system that allows users to perform powerful data analysis and visualization using only natural language. Klarity360 removes the need for SQL knowledge or coding experience, eliminating the steep learning curve and empowering all stakeholders to access insights instantly. This document mainly outlines Klarity360's architecture, capabilities, and cost-effective advantages over conventional methods.
+
+## **1\. Problem Statement**
+
+Modern enterprises require quick, flexible access to data insights, yet traditional tools demand SQL expertise, deep dashboard configuration skills, and complex workflows. Business users, analysts, and domain experts struggle to interact directly with their data.
+
+**Klarity360** resolves this gap by offering:
+
+*   **On-the-go analysis and dashboarding** via natural language
+*   Elimination of the "understanding layer" needed to create visualizations
+*   A unified, modular AI-powered platform accessible to everyone
+
+![](/images/extracted/img_46d24b4a.png)
+
+## **2\. System Overview**
+
+_Klarity360 – Insight Agent_ is an enterprise-grade AI analytics platform that enables natural language–driven data analysis, visualization, and insights generation over governed enterprise data. The system is designed with a modular, secure, and scalable architecture, leveraging Microsoft Fabric as the central data and analytics backbone. It integrates:
+
+*   **Natural Language–driven analytics orchestration** using large language models for intent understanding and reasoning.
+*   **Semantic retrieval and context-aware processing** to enrich user queries with relevant data and historical context.
+*   **Dynamic workflow orchestration**, where the backend determines the appropriate execution path based on user intent.
+
+![](/images/extracted/img_b43b22c3.png)
+
+## **3\. Available Components**
+
+### **3.1 NL2SQL Engine**
+
+*   A trained model using **Retrieval-Augmented Generation (RAG)** based approach is used to translate natural language into SQL.
+*   Executes queries on the client’s Lakehouse / warehouse using OneLake capabilities and stores the resultant temporary tables in client’s environment for further drill downs.
+
+![](/images/extracted/img_737f3cbe.png)
+
+### **3.2 Dynamic Workflow Orchestration**
+
+Based on the nature of the request, the system intelligently routes execution to one of the following paths:
+
+*   Interactive chart and visualization generation
+*   Structured question answering over the datasets
+*   Analytical and statistical analysis using fabric capacity backed data execution.
+
+![](/images/extracted/img_d5978f84.png)
+
+## **4\. Dynamic Workflow Modules**
+
+### **4.1 Visualization Module**
+
+*   Leverages LLMs to generate code in **Plotly**, **Matplotlib**, **Seaborn**, and more.
+*   The Chart Generation and Explanation Process in Klarity360 begins by interpreting the user's query to decide the appropriate workflow. Once the flow is determined, the system **creates the chart** using suitable libraries.
+*   Simultaneously, it leverages LLM to **generate a natural-language explanation** that summarizes the insights depicted in the chart. Finally, both the chart and its explanation are returned to the user, enabling a seamless and intuitive experience from query to visual insight - without requiring any technical expertise.
+
+![](/images/extracted/img_0af2de25.png)
+
+### **4.2 Data Discovery Module**
+
+Klarity360 allows you to ask questions about your data just like talking to a human and get answers without writing any code. Here's how it works behind the scenes:
+
+*   **Bringing in Your Data**: Klarity360 can read data from sources like user’s lakehouses/warehouses and uses it for analysis by creating temporary tables and enable on-the-go code executions on the data.
+*   **Understanding Your Question**: When you type your question (like _“What were the sales in Q3?”_), Klarity360 understands exactly what you are asking and which parts of the data it should look at.
+*   **Generating the Answer**: Based on your question, Klarity360 writes the necessary code (in Python). It runs this code safely behind the scenes on the user’s Lakehouse to avoid any data movement out of fabric.
+*   **Showing Results Clearly**: Klarity360 then shows you the answer in an easy-to-understand format either a table or points to effectively communicate the findings to the user.
+
+![](/images/extracted/img_f418b6df.png)
+
+### **4.3 Analytical and Statistical Analysis Module**
+
+Klarity360 helps you make sense of complex data - like sales numbers, campaign results, or customer segments - by turning your natural language questions into deep, data-driven insights. Here’s how the analysis process works in simple terms:
+
+*   **Understands What You Want to Analyse**<br/>When you ask a question (like _“How did Q3 2023 sales perform?”_), Klarity360 figures out which part of the data you’re focusing on - such as the _sales_ column or _regions_ - to begin the analysis.
+*   **Finds What’s Related**<br/>Klarity360 doesn’t just look at one column, it automatically finds other related data points (e.g., product type, channel, region) that might influence the results. This helps uncover hidden patterns or connections.
+*   **Compares Different Time Periods**<br/>To give you context, Klarity360 compares your focus area (like _Q3 2023_) with a related period (like _Q2 2023_). This way, you can see trends - what improved, what dropped, and by how much.
+*   **Summarizes the Numbers Smartly**<br/>Instead of dumping raw data, Klarity360 gives you clean summaries - like averages, highs/lows, and trends - so you quickly grasp the story without sifting through rows and columns.
+*   **Digs into Non-Numeric Insights Too**<br/>It doesn't stop at numbers. If your data includes categories (like _campaign name_, _platform_, or _audience type_), Klarity360 asks smart follow-up questions - such as _“Which platform had the highest conversion rate?”_ - and answers them too.
+*   **Gives You a Ready-to-Use Report**<br/>Once all this is done, Klarity360 puts everything together into a clear, easy-to-understand report that blends numbers, trends, and explanations. You can use this report as-is for team discussions, presentations, or decision-making.
+*   Klarity360 also supports out-of-the-box analyses such as Market Basket Analysis, Cohort Analysis, and Funnel Analysis.
+
+![](/images/extracted/img_4ea4e85e.png)
+
+## **5\. Advantages Over Conventional Methods**
+
+**Klarity360 democratizes data access**, enabling every user to create dashboards and insights instantly without relying on technical teams.
+
+| Feature | Traditional Tools | Klarity360 |
+| --- | --- | --- |
+| Requires SQL Knowledge | Users must know SQL or depend on technical teams to write queries and retrieve data. | No technical knowledge required; users simply type their questions in plain English. |
+| Manual Dashboard Configuration | Dashboards often require manual setup, drag-and-drop configurations, filters, and parameters. | Reports are generated automatically using LLMs based on the user’s intent. |
+| Custom Visualizations | Users are limited to predefined chart types offered by the tool (e.g., bar, pie, line). | Supports multiple libraries (e.g., Plotly, Seaborn), allowing rich, tailored visuals. |
+| 
+<table><tbody><tr><td><strong>Data Exploration</strong></td></tr></tbody></table>
+
+|  |
+| --- |
+
+ | 
+
+Exploration is often static. Requires refreshing filters or creating new views manually.
+
+ | 
+
+Exploration is dynamic and conversational, ask follow-up questions and dive deeper.
+
+ |
+| 
+
+| **Accessibility** |
+| --- |
+
+|  |
+| --- |
+
+ | 
+
+Mostly accessible to data analysts, BI developers, or trained professionals.
+
+ | 
+
+Open to everyone - marketers, sales teams, product managers, and CXOs alike.
+
+ |
+
+## **6\. Security and Data Protection Model**
+
+The Klarity360 on Fabric workload is designed with a **privacy-first and data-minimization** security model, ensuring that customer data remains within the client’s Microsoft Fabric environment at all times.
+
+**Metadata-Only Access for AI Processing**:
+
+For Natural Language to SQL (NL2SQL) capabilities, the application accesses only metadata from the connected Fabric Lakehouse. This includes:
+
+*   Table and column names
+*   Foreign and Primary Key information.
+*   Data types
+*   Schema Structure
+
+No factual or row-level data is exposed to the Large Language Model (LLM) or transmitted to the Kanerika-hosted services during query interpretation.
+
+## Secure Dynamic Workflow Orchestration:
+
+When a request requires analytical or programmatic execution:
+
+*   The system generates SQL using metadata-only context.
+*   The SQL is executed entirely within the client's Fabric capacity.
+*   The resulting dataset is materialized as a temporary, scoped result table within Fabric.
+
+This enables Zero-Data movement from OneLake, while providing reliable and scalable solution for clients.
+
+## Client-Side Execution and Data Residency:
+
+All generated Python code is executed inside the customer’s Fabric environment, ensuring:
+
+*   Data residency remains unchanged
+*   Compute and execution stay within enterprise-controlled boundaries
+*   No raw or intermediate datasets are transferred externally
+
+Only the minimum required output (such as aggregated values, chart specifications, or analytical summaries) is returned to the backend to construct the user response.
+
+## Controlled Output and Minimal Data Exposure:
+
+The system enforces strict output controls:
+
+*   Only information necessary to answer the user's request is retrieved
+*   No raw tables or sensitive datasets are exposed
+*   All outputs are transient and request-scoped
+
+This ensures compliance with enterprise security, privacy, and governance expectations.
+
+## AI Safety and Responsible AI Controls
+
+The Klarity360 on Fabric platform incorporates built-in AI safety and responsible AI controls to ensure secure, compliant, and trustworthy AI interactions across all workflows.
+
+## Input and Output Moderation
+
+The system applies input and output moderation controls to:
+
+*   Prevent unsafe, inappropriate, or policy-violating prompts
+*   Validate generated responses before delivery to the user
+*   Enforce enterprise usage guidelines
+
+This ensures consistent and responsible AI behaviour across user interactions.
+
+## No Training on Customer Data
+
+Customer data is never used for model training or fine-tuning.
+
+All AI interactions are stateless and request-scoped, ensuring that:
+
+*   Customer data does not persist beyond execution
+*   No data contributes to future model behaviour
+
+## **7\. Real-World Use Cases**
+
+*   **Marketing Teams**: Analyse campaigns, segment performance via natural queries.
+*   **Sales Analysts**: Drill into sales trends, comparisons, funnel tracking.
+*   **CXOs & Stakeholders**: Get instant dashboards and reports without dependency on data teams.
+*   **Educators & Researchers**: Explore datasets without technical barriers.
+
+![](/images/extracted/img_c86f9b02.png)
+
+## **8\. Conclusion**
+
+_Klarity360 – Insight Agent_ transforms the way we interact with data. By removing the complexity of SQL and dashboard creation, Klarity360 unlocks the true potential of data for everyone. Whether you are a business user, a data analyst, or a decision-maker, Klarity360 provides a scalable, intelligent, and cost-effective solution to make data-driven decisions accessible, fast, and reliable.
+
+## Product Demos & Overviews
+
+Watch these videos to explore Klarity360's analytical capabilities across different industries and use cases:
+
+<div className="docs-video-grid"><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/EFEJevbDdr0" title="Klarity360 AI: From Data to Decisions with Smart Automation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">From Data to Decisions</h3><p className="docs-video-card-desc">An overview of Klarity360 AI, showing how conversational queries replace complex dashboards and speed up analysis.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/L5pIfqEDEsQ" title="Klarity360 the Statistician: AI-Powered Data Analysis Made Simple" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Klarity360 the Statistician</h3><p className="docs-video-card-desc">A deep dive into connecting Klarity360 to PostgreSQL, generating visualizations, and performing statistical analyses.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/0vSj3-FzMkQ" title="Klarity360: Data Insights AI Agent for Manufacturing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Manufacturing Insights</h3><p className="docs-video-card-desc">See how Klarity360 monitors plant efficiency (OEE), downtime risks, quality metrics, and supplier performance.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/41W5eYkP7kE" title="Klarity360: Data Insights AI Agent for Pharma" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Pharmaceutical Analytics</h3><p className="docs-video-card-desc">Analyzing cohort trends, tracking revenue health, and finding profitability issues with plain text queries.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/_lrJb1nY4wI" title="Klarity360: Data Insights AI Agent for Retail" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Retail Operations</h3><p className="docs-video-card-desc">Tracking sales performance, conversion rates, and dead stock to optimize inventory in retail stores.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/NHXNv0PKGj8" title="How Klarity360 Turns Financial Data into Insights | FP&amp;A Analysis" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">FP&amp;A Financial Analysis</h3><p className="docs-video-card-desc">Answering complex financial questions regarding top-performing customers and revenue risks in seconds.</p></div></div></div>

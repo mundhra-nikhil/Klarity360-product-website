@@ -1,0 +1,265 @@
+| **Document Information**  | **Details**  |
+| --- | --- |
+| Document No.  | Security Document/Klarity360/02/2026/1  |
+| Document Description  | Klarity360 – Security Document |
+| Version No.  | 1.0  |
+| Prepared By  | Kanerika Technical Team  |
+| Reviewed By  |    |
+| Release Date  | February 2026  |
+
+**Contact Details** <br/>
+
+| **Information**  | **Details**  |
+| --- | --- |
+| Address  | Kanerika Inc., Summit Executive Centre 13706 Research Blvd, Suite 211 D Austin, TX – 78750  |
+| Phone  | +1 224.383.7877  |
+| Website  | [www.kanerika.com](https://www.kanerika.com/)  |
+| Sales E-mail ID  | sales@kanerika.com  |
+
+## **Azure Cloud Architecture**
+
+## **1\. Executive Summary**
+
+Our product is engineered with a **Secure-by-Design and Secure-by-Default** philosophy, deeply aligned with Microsoft Azure’s security-first cloud platform and the Azure Well-Architected Framework (Security Pillar). Security is not treated as an afterthought; it is embedded across infrastructure, application design, development lifecycle, and day-to-day operations.
+
+We adopt a **Zero Trust security model**, where no user, device, network, or workload is inherently trusted. Every access request is explicitly authenticated, authorized, logged, and continuously evaluated based on identity, context, and risk.
+
+This whitepaper outlines how we safeguard customer data through:
+
+*   Strong network isolation and perimeter protection
+*   Enterprise-grade identity and access controls
+*   Secure application development and DevSecOps practices
+*   End-to-end data encryption and key management
+*   Continuous monitoring, threat detection, and compliance enforcement
+
+Our objective is to deliver a resilient, compliant, and highly secure cloud platform product that meets the expectations of regulated industries such as Healthcare, Finance, and Government.
+
+## **2\. Architecture & Network Security**
+
+### **2.1 Secure Network Design Principles**
+
+Our product architecture is designed to minimize attack surfaces and prevent unauthorized lateral movement. We apply a **defense-in-depth** strategy at the network layer.
+
+Key principles include:
+
+*   No direct exposure of backend services to the public internet
+*   Segmentation of workloads based on trust boundaries
+*   Explicit traffic inspection and filtering
+
+### **2.2 Virtual Network (VNet) Isolation**
+
+*   The application is deployed within dedicated Azure Virtual Networks (VNets).
+*   Workloads are segmented into **private subnets** for application services, databases, and internal integrations.
+*   Network Security Groups (NSGs) enforce granular inbound and outbound traffic rules.
+*   Backend services such as databases, storage, and internal APIs are accessible only via private IP addresses.
+
+This architecture safeguards our product by enforcing robust security, compliance, and governance controls, and completely restricting public access to the environment.
+
+### **2.3 Private Connectivity**
+
+*   **Private Endpoints / Azure Private Link** are used to securely connect to Azure PaaS services such as Azure SQL, Storage Accounts, and Key Vault.
+*   Traffic between services remains on the Microsoft backbone network and never traverses the public internet.
+
+### **2.4 Distributed Denial of Service (DDoS) Protection**
+
+*   Azure’s native **DDoS Protection** safeguards the platform against volumetric and protocol-based attacks.
+*   Automatic traffic absorption and mitigation ensure service availability during high-scale attacks.
+*   Telemetry and attack analytics are continuously monitored to fine-tune protections.
+
+### **3\. Identity and Access Management (IAM)**
+
+### **3.1 Identity as the Security Perimeter**
+
+We treat identity as the primary control plane for security, replacing traditional network-based trust models.
+
+### **3.2 Microsoft Entra ID (Azure AD)**
+
+*   All user, service, and administrative access are managed via **Microsoft Entra ID**.
+*   Centralized identity governance enables consistent authentication, authorization, and lifecycle management.
+*   Conditional Access policies enforce context-aware access controls.
+
+### **3.3 Role-Based Access Control (RBAC)**
+
+*   Access is granted strictly on a **least-privilege** basis.
+*   Azure RBAC roles are scoped at the workspace level.
+
+### **3.4 Managed Identities**
+
+*   Applications and services authenticate using **Azure Managed Identities**.
+*   Secrets, passwords, and connection strings are never embedded in code or configuration files.
+*   Identity-based access replaces static credentials, significantly reducing the risk of credential leakage.
+
+## **4\. Application Security & DevSecOps**
+
+### **4.1 Secure Software Development Lifecycle (SSDLC)**
+
+Security controls are integrated into every phase of development, from design to deployment and maintenance.
+
+*   **Design Phase:**
+    *   Secure architecture review (Zero trust principles)
+    *   Encryption standards defined (at rest & in transit)
+    *   Logging and monitoring architecture
+*   Release & Deployment Phase:
+    *   Secure CI/CD pipelines
+    *   No hardcoded secrets in pipelines
+    *   Pipeline identity with least privilege
+    *   Release approval gates (security sign-off)
+    *   Environment segregation (Dev/Test/Prod)
+    *   Secrets injected securely (not stored)
+    *   Rollback & DR readiness
+*   Operations & Maintenance Phase:
+    *   Centralized logging & SIEM integration
+    *   Runtime application self-protection
+    *   Ensure stable operation of the workload
+    *   Maintain service availability and reliability
+    *   Monitor system health and usage\\\`
+
+### **4.2 Secure Coding Practices**
+
+*   Development teams follow secure coding standards.
+*   Code reviews include security validation checkpoints.
+*   Common vulnerabilities such as injection flaws, insecure deserialization, and broken authentication are proactively addressed.
+*   Secrets scanning in code repos is mandated.
+
+### **4.3 API Security**
+
+*   **VNet Integration:** Deploy **API Management inside a VNet** to isolate traffic and control inbound/outbound connectivity.
+*   **Encrypted Transport:** Enforce **HTTPS/TLS 1.2+** for all inbound and outbound traffic; disable legacy protocols and weak ciphers.
+*   **Access Restrictions:** Implement **IP filtering**, NSGs, or private endpoints to limit access to trusted sources only.
+*   **Traffic Protection:** Enforce **rate limiting and quotas** to prevent abuse, throttling issues, and service exhaustion.
+*   **Version Management:** Implement secure **API versioning and deprecation policies** to avoid exposure from legacy APIs.
+
+## **5\. Data Protection & Encryption**
+
+### **5.1 Data Lifecycle Security**
+
+Customer data is protected throughout its lifecycle—at rest, in transit, and during processing.
+
+### **5.2 Encryption in Transit**
+
+*   All communications use **TLS 1.2**.
+*   Secure channels are enforced between:
+    *   Clients and application endpoints
+    *   Internal services and Azure PaaS resources
+
+### **5.3 Encryption at Rest**
+
+*   Data stored in databases are encrypted using **AES-256**.
+*   Data stored in vector database are encrypted using **AES-128**.
+*   Encryption is enabled by default and cannot be disabled.
+
+### **5.4 Key Management**
+
+*   Cryptographic keys and secrets are centrally managed using **Azure Key Vault**.
+*   Access to keys is strictly controlled through RBAC and managed identities.
+*   Key rotation and audit logging are enforced.
+*   **Least Privilege:** Grant minimal required permissions to users, applications, and service identities.
+
+## **6\. Continuous Monitoring, Threat Detection & Compliance**
+
+### **6.1 Logging & Auditing**
+
+*   All security, platform, and application logs are stored.
+*   Logs include:
+    *   Authentication and authorization events
+    *   Network traffic and firewall activity
+    *   Application diagnostics and errors
+
+### **6.2 Our Compliance Alignment**
+
+*   Our security controls support compliance with common industry frameworks, including: - ISO 27001 - SOC 2 – GDPR – ISO 27701 – ISO 9001
+*   Compliance posture is continuously evaluated rather than assessed only during audits.
+
+### **6.3 Data Compliance**
+
+*   The platform does not persist or store customer business data outside the client’s Microsoft Fabric environment. All analytical data remains within customer-controlled infrastructure.
+*   Any temporary data artifacts are created solely for request execution and are automatically cleared after the workflow completes.
+*   Only the minimum data required to fulfill a user request is accessed, processed, or returned, in accordance with data minimization and privacy best practices.
+*   Customer data is not shared, reused, or repurposed across tenants, users, or sessions, and is never exposed to Kanerika-managed systems.
+*   Data access is restricted to authorized services operating within the client's Fabric capacity, governed by role-based access controls and enterprise identity policies.
+
+### **6.4 AI Security & Compliance**
+
+## 6.4.1 Private Endpoints (Azure Private Link):
+
+*   Private Endpoints enable Kanerika’s AI models to be accessed exclusively through a Virtual Network using the Microsoft backbone. This prevents public internet exposure and reduces attack surfaces.
+
+## 6.4.2 AI-Specific Security Controls:
+
+*   Prompt Injection and Jailbreak Protection: Azure OpenAI implements Prompt Shields to detect and mitigate prompt injections, system prompt override attempts, and jailbreak techniques. These controls are applied in real time during request processing.
+*   Content Safety: Azure AI Content Safety provides filtering for harmful or inappropriate content, including hate, violence, sexual content, self-harm, and harassment. Filters can be applied to both user inputs and model outputs.
+*   Abuse and Misuse Monitoring: Microsoft performs continuous monitoring to detect abusive usage patterns, anomalous behavior, and policy violations. Enforcement actions may include throttling, suspension, or service termination in extreme cases.
+
+## 6.4.3 Application-Level Security Responsibilities:
+
+*   Secure Prompt Engineering: The system applies input and output moderation controls to Prevent unsafe, inappropriate, or policy-violating prompts with Input validation, output filtering, and structured prompt templates.
+*   Retrieval-Augmented Generation (RAG) Security: Vector databases have been encrypted - Access is enforced using RBAC - Document-level authorization and metadata filtering. These controls prevent unauthorized data exposure across users or tenants.
+
+## 6.4.4 Data Handling Model
+
+*   All the AI interactions are stateless and request-scoped, ensuring that Customer data does not persist beyond execution and No data contributes to future model behaviour
+*   The platform follows a data-minimization principle for AI processing and no factual or row-level customer data is provided to the LLM
+
+## 6.4.5 Logging and Auditing
+
+*   All the AI interactions are subject to prompt and response logging for audit and traceability purposes. Logs are maintained in accordance with enterprise logging and retention policies.
+
+## **7\. Application Architecture Diagram**
+
+### **7.1 High-Level Application Architecture Overview**
+
+The following logical architecture illustrates how Azure-native security services are layered to provide end-to-end protection across ingress, application, data, and operations.
+
+![](/images/extracted/img_0950a0c8.png)
+
+### **7.2 Security Control Mapping by Layer**
+
+| **Architecture Layer** | **Services / Components Used** | **Security Capabilities** |
+| --- | --- | --- |
+| Edge & Ingress | Azure Virtual Network | DDoS protection |
+| API Layer | NGNIX, Application Layer Controls | OAuth 2.0, rate limiting, request validation |
+| Network | Azure VNet, NSGs, Private Link | Network isolation, no public access to backend |
+| Identity | Microsoft Entra ID, RBAC | Zero Trust, least privilege, conditional access |
+| Compute | Azure VMs | Managed identity, hardened OS, Defender integration |
+| Data | Microsoft Onelake, Fabric Monitoring Hub | Private endpoints, monitoring for onelake and fabric |
+| Secrets | Azure Key Vault | Secure key storage, rotation, audit logs |
+| Monitoring | Azure Monitoring | Operation monitoring, alerting and system health visibility |
+
+## **8\. Shared Responsibility Model**
+
+### **8.1 Overview**
+
+Security in the cloud follows a **Shared Responsibility Model**, where Microsoft Azure secures the underlying cloud platform, while we are responsible for securing what we deploy and configure within Azure.
+
+This model ensures clear accountability and transparent ownership of security controls.
+
+### **8.2 Responsibility Breakdown**
+
+| **Security Area** | **Microsoft (Azure)** | **Kanerika** |
+| --- | --- | --- |
+| **Physical Data Centers** | **R / A** – Facilities security, power, cooling, hardware lifecycle | I |
+| **Global Network** | **R / A** – Azure backbone, global routing, DDoS infrastructure | **R** – Secure network architecture design |
+| **Host OS & Fabric** | **R / A** – Hypervisor, host OS patching, fabric controller | **R** – VM OS hardening (IaaS only) |
+| **Identity Platform** | **R / A** – Entra ID availability, identity service resilience | **R / A** – MFA, RBAC, Conditional Access |
+| **Network Controls** | **R / A** – Platform DDoS protection | **R / A** – NSGs, Private Endpoints, Firewall rules |
+| **Application Security** | **R** – Platform runtime & PaaS security | **R / A** – Secure coding, OWASP, API security |
+| **Data Protection** | **R** – Encryption at rest/in transit capabilities | **R / A** – Data classification, access policies |
+| **Key Management** | **R** – HSM infrastructure, Key Vault platform | **R / A** – Key usage, rotation, access control |
+| **Monitoring & Logging** | **R** – Native telemetry & logs availability | **R / A** – Log analysis, alerting, IR |
+| **Compliance** | **R / A** – Azure regulatory certifications | **R / A** – Product compliance & audits |
+
+### **8.3 Customer Responsibilities (Where Applicable)**
+
+For customer-managed integrations or access scenarios, customers are responsible for:
+
+*   **Identity and Access Governance** - Managing user identities, role assignments, and access policies within Microsoft Entra ID and Microsoft Fabric to ensure that only authorized users can access the workload and underlying data.
+*   **Fabric Workspace and Capacity Security** - Configuring and maintaining appropriate security controls, permissions, and capacity settings within their Fabric environment where the workload is executed.
+*   **User-Provided Inputs and Configuration** - Ensuring that any user-provided configuration, prompts, or training inputs comply with organizational security and data usage policies.
+
+We provide configuration guidance and best practices to support customers in meeting their security obligations.
+
+## **9\. Conclusion**
+
+By leveraging Azure-native security capabilities and following Zero Trust and DevSecOps principles, our platform delivers a robust, resilient, and compliant security architecture. Continuous monitoring, automated controls, and identity-driven access ensure that customer data remains protected against evolving threats while enabling secure innovation at scale.
+
+Security is an ongoing commitment, and we continuously evolve our controls to align with emerging risks, regulatory requirements, and industry best practices.

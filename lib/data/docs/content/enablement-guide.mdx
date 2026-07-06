@@ -1,0 +1,74 @@
+## **Overview**
+
+The **Klarity360 Insight Agent** requires access to several Azure and Microsoft services. To enable the Klarity360 workload in a **guest tenant workspace**, a **Global Administrator** must grant admin consent and register the required service principals.
+
+This guide provides clear, step-by-step instructions to verify the Klarity360 application, register it if needed, and configure the required services.
+
+## **Required Services**
+
+The Klarity360 Insight Agent depends on the following Azure and Microsoft services:
+
+|  | **Service Name** | **Service Principal App ID** |
+| --- | --- | --- |
+| 1 | Azure SQL Database | 022907d3-0f1b-48f7-badc-1ba6abab6d66 |
+| 2 | Azure Data Explorer | 2746ea77-4702-4b45-80ca-3c97e680e8b7 |
+| 3 | Microsoft Graph | 00000003-0000-0000-c000-000000000000 |
+| 4 | Power BI Service | 00000009-0000-0000-c000-000000000000 |
+| 5 | Azure Storage | e406a681-f3d4-42a8-90b6-c2b029497af1 |
+
+**Klarity360 Application Client ID:**<br/>9adb0fb8-51ca-48b8-a32e-6d60d1d09f6d<br/>Note : This id will be used while setting up the Klarity360 service principle if it is required
+
+## **Step 1: Verify Klarity360 Application in Guest Tenant**
+
+1.  Sign in to the **Microsoft Entra Admin Center** ([Azure Portal)](https://portal.azure.com/).
+2.  Navigate to: **Enterprise Applications → All Applications**
+3.  Remove any filters and search for the **Klarity360 application**.
+
+## **Step 2: Verifying Klarity360 Application Configuration**
+
+Check that if Klarity360 is auto populated under the **Enterprise Applications → All Applications**<br/>then proceed with next steps, in case the name does not appear follow the below instruction
+
+<br/>Use **Azure Cloud Shell**
+
+Connect-AzureAD
+
+New-AzureADServicePrincipal -AppId "\< Klarity360\_Application\_client ID>"
+
+After running the commands:
+
+*   Return to **Enterprise Applications → All Applications**
+*   Confirm that the Klarity360 application now appears
+
+## **Step 3: Add Required Service Principals**
+
+after confirming that the Klarity360 application is available, review the **Enterprise Applications → All Applications** section and identify any required services that are missing in your tenant. For any services that are not listed, follow the steps below to manually add the corresponding service principals.
+
+### **Connect to Azure AD**
+
+Connect-AzureAD
+
+### **Create Service Principals**
+
+Run the following command for **each service** listed below:
+
+New-AzureADServicePrincipal -AppId "\<SERVICE\_APP\_ID>"
+
+| Service | Command |
+| --- | --- |
+| Azure SQL Database | New-AzureADServicePrincipal -AppId "022907d3-0f1b-48f7-badc-1ba6abab6d66" |
+| Azure Storage | New-AzureADServicePrincipal -AppId "e406a681-f3d4-42a8-90b6-c2b029497af1" |
+| Azure Data Explorer | New-AzureADServicePrincipal -AppId "2746ea77-4702-4b45-80ca-3c97e680e8b7" |
+| Power BI Service | New-AzureADServicePrincipal -AppId "00000009-0000-0000-c000-000000000000" |
+| Microsoft Graph | New-AzureADServicePrincipal -AppId "00000003-0000-0000-c000-000000000000" |
+
+## **Step 4: Adding workload**
+
+After adding all service principals, grant tenant-wide admin consent.
+
+Go to Fabric and try to add the Klarity360 from the Workload Hub
+
+## Setup Video Guide
+
+Watch this step-by-step video to guide you through the setup process of Klarity360 in Microsoft Fabric:
+
+<div className="docs-video-wrapper"><iframe src="https://www.youtube.com/embed/_uRopPgEkYM" title="How to Set Up Klarity360-Kanerika's AI Data Insights Agent in Microsoft Fabric" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div>

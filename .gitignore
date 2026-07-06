@@ -1,0 +1,7 @@
+node_modules/
+.next/
+out/
+*.log
+.env*
+public/full-bg-video.mp4
+public/klarity360-demo.mp4
