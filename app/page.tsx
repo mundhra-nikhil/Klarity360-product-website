@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import AnnouncementBar from "@/components/ui/AnnouncementBar";
 import Hero from "@/components/sections/Hero";
 import VideoDemo from "@/components/sections/VideoDemo";
+import DeploymentArchitecture from "@/components/sections/DeploymentArchitecture";
 import Industries from "@/components/sections/Industries";
 import Footer from "@/components/sections/Footer";
 
@@ -31,6 +32,7 @@ export default function Home() {
 
       <div id="page-below">
         <VideoDemo />
+        <DeploymentArchitecture />
         <Industries />
         <Footer />
       </div>

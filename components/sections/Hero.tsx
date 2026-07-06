@@ -66,13 +66,10 @@ export default function Hero({ showAnnouncement, barRef }: HeroProps) {
 
         <div id="hero-content" ref={heroContentRef}>
           <h1 className="hero-h1">
-            Your Data Team,<br />On Demand.
+            Data Reconciliation &<br />Validation Platform
           </h1>
           <p className="hero-sub">
-            The most successful enterprises don&apos;t wait for insight - they
-            demand it. {PRODUCT_NAME} puts the full power of your data in every
-            leader&apos;s hands, instantly. No analysts. No dashboards. Just
-            answers, the moment you need them.
+            {PRODUCT_NAME} compares datasets across systems to help QA and business users validate migrated or transformed data. Engineered with a Secure-by-Design and Secure-by-Default philosophy.
           </p>
           <Link href="https://kanerika.com/contact-us/" target="_blank" rel="noopener noreferrer" className="hero-cta">
             Request a Demo

@@ -57,4 +57,10 @@ export const industries: Industry[] = [
     description: "Digitize operations, automate tasks, deliver stronger customer connections.",
     image: `${BASE_PATH}/industries/retail.jpg`,
   },
+  {
+    id: "government",
+    name: "Government",
+    description: "Ensure resilient, compliant, and highly secure data reconciliation that meets the expectations of public sector.",
+    image: `${BASE_PATH}/industries/government.jpg`,
+  },
 ];

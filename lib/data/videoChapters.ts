@@ -10,26 +10,25 @@ export interface Chapter {
 export const chapters: Chapter[] = [
   {
     timestamp: 0,
-    title: "Connect to Data Source",
+    title: "Web User Interface",
     description:
-      "Connect an existing data source or bring a new connection to life inside of ${PRODUCT_NAME}'s context window within seconds.",
+      "Intuitive process configuration, comprehensive dashboards, tracking KPIs, and on-demand reporting access.",
   },
   {
     timestamp: 10,
-    title: "Knowledge Guide",
+    title: "Validation & Reconciliation",
     description:
-      "Visualize how tables and columns connect as lineages and schemas. ${PRODUCT_NAME} uses these graphs to plan and resolve queries and reduce ambiguity.",
+      "Perform deterministic schema validation, row-level data comparison, and business-rule tolerance validation entirely within your environment.",
   },
   {
     timestamp: 20,
-    title: "Telemetry Insights",
-    description: "Track system health and query patterns across your workspace.",
+    title: "AI Integration Layer",
+    description: "Sends metadata and natural-language rules to suggest mappings and generate SQL, without ever transmitting row-level business data.",
   },
   {
     timestamp: 28,
-    title: "Ask ${PRODUCT_NAME} Directly",
+    title: "Data Sources & Connectors",
     description:
-      "Chat with ${PRODUCT_NAME} to build comprehensive reports and get answers to urgent questions in natural language. ${PRODUCT_NAME} brings together a unique and powerful system to build the right graphs, summaries and analysis for you.",
+      "Secure, outbound-only connectivity to Oracle databases, Microsoft Fabric, and Excel/CSV files directly from your environment.",
   },
 ];
-
