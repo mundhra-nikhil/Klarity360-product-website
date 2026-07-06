@@ -1,15 +1,3 @@
-"use client";
-import { useRef, useEffect, RefObject } from "react";
-import Nav from "@/components/ui/Nav";
-import { useScrollProgress } from "@/hooks/useScrollProgress";
-import Link from "next/link";
-import { BASE_PATH } from '@/lib/constants';
-
-
-
-interface HeroProps {
-  /** Whether the announcement bar is visible; used to compute the sticky offset. */
-  showAnnouncement: boolean;
   /** Ref to the AnnouncementBar wrapper so its height can be measured. */
   barRef: RefObject<HTMLDivElement | null>;
 }

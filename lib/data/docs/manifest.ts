@@ -28,7 +28,7 @@ export const docCategories: DocCategory[] = [
       {
         slug: "enablement-guide",
         sidebarTitle: "Enablement Guide",
-        title: `${PRODUCT_NAME} Enablement Guide",
+        title: `${PRODUCT_NAME} Enablement Guide`,
         description:
           "Pre-requisite guide outlining the Workload Setup required for Guest Tenants before enabling ${PRODUCT_NAME}.",
       },
@@ -56,7 +56,7 @@ export const docCategories: DocCategory[] = [
       {
         slug: "karl-userguide-connectorsetupdoc",
         sidebarTitle: "User Guide & Connector Setup",
-        title: `${PRODUCT_NAME} User Guide & Connector Setup",
+        title: `${PRODUCT_NAME} User Guide & Connector Setup`,
         description:
           "Detailed guide on the ${PRODUCT_NAME} User Guide and configuring connector setups for your workloads.",
       },
@@ -77,8 +77,8 @@ export const docCategories: DocCategory[] = [
       },
       {
         slug: "vs-fabric",
-        sidebarTitle: `${PRODUCT_NAME} vs Fabric",
-        title: `${PRODUCT_NAME} vs Fabric Data Agent",
+        sidebarTitle: `${PRODUCT_NAME} vs Fabric`,
+        title: `${PRODUCT_NAME} vs Fabric Data Agent`,
         description:
           "A detailed comparison between ${PRODUCT_NAME} and the Microsoft Fabric Data Agent, highlighting key differentiators.",
       },
@@ -92,7 +92,7 @@ export const docCategories: DocCategory[] = [
       {
         slug: "pricing",
         sidebarTitle: "Pricing",
-        title: `${PRODUCT_NAME} Pricing",
+        title: `${PRODUCT_NAME} Pricing`,
         description:
           "Details on Pricing and Credits for ${PRODUCT_NAME} usage, including tier breakdowns and billing models.",
       },
@@ -107,7 +107,7 @@ export const docCategories: DocCategory[] = [
       {
         slug: "security-document",
         sidebarTitle: "Security Overview",
-        title: `${PRODUCT_NAME} Security Document",
+        title: `${PRODUCT_NAME} Security Document`,
         description:
           "Comprehensive Security Document outlining compliance, infrastructure security, and data protection policies.",
       },

@@ -20,7 +20,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: `${PRODUCT_NAME} - Insight Agent`,
   description:
-    `${PRODUCT_NAME} puts the full power of your data in every leader's hands, instantly.",
+    `${PRODUCT_NAME} puts the full power of your data in every leader's hands, instantly.`,
 };
 
 export default function RootLayout({

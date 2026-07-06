@@ -12,6 +12,16 @@ const nextConfig = {
     ],
   },
   allowedDevOrigins: ["10.0.3.167", "localhost:3000"],
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/klarity360-product-website',
+        basePath: false,
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
