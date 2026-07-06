@@ -3,6 +3,7 @@
 
 import { footerColumns, badgesLine1, badgesLine2, legalLinks } from "@/lib/data/footerData";
 import { BASE_PATH } from '@/lib/constants';
+import Image from 'next/image';
 
 
 
@@ -19,11 +20,12 @@ export default function Footer() {
 
           {/* Logo */}
           <div className="footer-logo-wrap">
-            <img
+            <Image
               src={`${BASE_PATH}/images/footer/white-kanerika-Logo.svg`}
               alt="Global Tech Consulting Firm | AI, Analytics and Automation | Kanerika"
               width={160}
               height={54}
+              className="h-[54px] w-auto"
             />
           </div>
 
@@ -138,7 +140,13 @@ export default function Footer() {
             <div className="footer-badges-group">
               {badgesLine1.map((badge) => (
                 <a key={badge.name} href={badge.url} target="_blank" rel="noopener noreferrer">
-                  <img src={`${BASE_PATH}${badge.image}`} alt={badge.name} style={{ height: badge.height, width: "auto" }} />
+                  <Image
+                    src={`${BASE_PATH}${badge.image}`}
+                    alt={badge.name}
+                    width={120}
+                    height={parseInt(badge.height)}
+                    className="h-[42px] w-auto"
+                  />
                 </a>
               ))}
             </div>
@@ -148,7 +156,13 @@ export default function Footer() {
             <div className="footer-badges-group">
               {badgesLine2.map((badge) => (
                 <a key={badge.name} href={badge.url} target="_blank" rel="noopener noreferrer">
-                  <img src={`${BASE_PATH}${badge.image}`} alt={badge.name} style={{ height: badge.height, width: "auto" }} />
+                  <Image
+                    src={`${BASE_PATH}${badge.image}`}
+                    alt={badge.name}
+                    width={120}
+                    height={parseInt(badge.height)}
+                    className="h-[52px] w-auto"
+                  />
                 </a>
               ))}
             </div>

@@ -1,5 +1,8 @@
 node_modules/
 .next/
+.opencode/
+graphify-out/
+.agents/
 out/
 *.log
 .env*
