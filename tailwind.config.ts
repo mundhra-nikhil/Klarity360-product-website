@@ -22,6 +22,15 @@ const config: Config = {
           light: "#ffffff",
           dark: "#0a0a0a",
         },
+        navy: {
+          DEFAULT: "var(--navy)",
+          mid: "var(--navy-mid)",
+          light: "var(--navy-light)",
+        },
+        blue: {
+          DEFAULT: "var(--blue)",
+          hover: "var(--blue-hover)",
+        },
       },
     },
   },

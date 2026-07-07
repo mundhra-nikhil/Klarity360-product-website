@@ -7,6 +7,7 @@ import VideoDemo from "@/components/sections/VideoDemo";
 import DeploymentArchitecture from "@/components/sections/DeploymentArchitecture";
 import Industries from "@/components/sections/Industries";
 import Footer from "@/components/sections/Footer";
+import ParallaxCubes from "@/components/ui/ParallaxCubes";
 
 /**
  * Home — page orchestrator.
@@ -16,7 +17,7 @@ import Footer from "@/components/sections/Footer";
  * respective section components.
  */
 export default function Home() {
-  const [showAnnouncement, setShowAnnouncement] = useState<boolean>(true);
+  const [showAnnouncement, setShowAnnouncement] = useState<boolean>(false);
   const barRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -32,8 +33,14 @@ export default function Home() {
 
       <div id="page-below">
         <VideoDemo />
-        <DeploymentArchitecture />
-        <Industries />
+        
+        {/* Relative container for bottom sections to bound the parallax cubes */}
+        <div className="relative w-full h-full bg-navy">
+          <ParallaxCubes />
+          <DeploymentArchitecture />
+          <Industries />
+        </div>
+        
         <Footer />
       </div>
     </>
