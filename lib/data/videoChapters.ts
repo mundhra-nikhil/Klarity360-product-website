@@ -10,25 +10,26 @@ export interface Chapter {
 export const chapters: Chapter[] = [
   {
     timestamp: 0,
-    title: "Web User Interface",
+    title: "Dashboard & Process Overview",
     description:
-      "Intuitive process configuration, comprehensive dashboards, tracking KPIs, and on-demand reporting access.",
+      "Land on the Klarity360 dashboard: live task tracking, status KPIs, approvals, and a notifications feed surfacing reconciliation results as processes complete.",
   },
   {
-    timestamp: 10,
-    title: "Validation & Reconciliation",
+    timestamp: 4,
+    title: "Connecting Data Sources",
     description:
-      "Perform deterministic schema validation, row-level data comparison, and business-rule tolerance validation entirely within your environment.",
+      "Securely connect source and target databases — Oracle, Microsoft Fabric, and Excel/CSV files — using outbound-only connectivity that keeps your environment in control.",
   },
   {
-    timestamp: 20,
-    title: "AI Integration Layer",
-    description: "Sends metadata and natural-language rules to suggest mappings and generate SQL, without ever transmitting row-level business data.",
+    timestamp: 8,
+    title: "Creating a New Process",
+    description:
+      "Configure a reconciliation process end to end — mappings, validation rules, and tolerances — and watch it initialize and run against your connected sources.",
   },
   {
-    timestamp: 28,
-    title: "Data Sources & Connectors",
+    timestamp: 49,
+    title: "Exporting the Reconciliation Report",
     description:
-      "Secure, outbound-only connectivity to Oracle databases, Microsoft Fabric, and Excel/CSV files directly from your environment.",
+      "Once the run finishes with zero discrepancies, generate and download the full reconciliation report for review, audit, or sharing with stakeholders.",
   },
 ];
