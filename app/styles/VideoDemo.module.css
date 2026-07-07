@@ -4,11 +4,18 @@
   margin-left: calc(-50vw + 50%);
   min-height: 100vh;
   overflow: hidden;
-  background: #0d0d0d;
-  border-top: 1px solid #1e1e1e;
-  border-bottom: 1px solid #1e1e1e;
+  background: var(--navy);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vd-inner-row {
   display: flex;
   align-items: stretch;
+  width: 100%;
 }
 
 /* ─── Tabs column — 22% ─── */
@@ -92,14 +99,19 @@
   margin-top: 8px;
 }
 
+.vd-video-wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
 /* ─── Golden vertical progress bar — 4px ─── */
 .vd-bar-wrap {
   flex: 0 0 4px;
-  margin: 0 20px;
+  margin: 0 40px 0 20px;
   position: relative;
   background: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  align-self: stretch;
 }
 
 /* Fill: driven by barFillPct (mapped to dot positions) */
@@ -181,7 +193,8 @@
 }
 
 .vd-video {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   height: auto;
   object-fit: contain;
   border-radius: 12px;
@@ -195,10 +208,16 @@
 /* ─── Responsive ─── */
 @media (max-width: 1024px) {
   .vd-section {
-    flex-direction: column;
     min-height: auto;
     width: 100%;
     margin-left: 0;
+  }
+  .vd-inner-row {
+    flex-direction: column;
+  }
+  .vd-video-wrapper {
+    flex-direction: column;
+    align-items: center;
   }
   .vd-tabs {
     flex: none;
@@ -227,12 +246,17 @@
   }
   .vd-video-col {
     flex: none;
+    width: 100%;
     height: auto;
     display: flex;
     align-items: center;
   }
   .vd-video-pad {
     padding: 0 16px 24px;
+  }
+  .vd-video {
+    width: 100%;
+    flex: none;
   }
 }
 

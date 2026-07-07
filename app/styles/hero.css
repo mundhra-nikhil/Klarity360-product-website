@@ -415,7 +415,7 @@ nav {
 }
 .elementor-button-info .elementor-button, #flip-sale a {
     border-radius: 8px;
-    background: linear-gradient(79.86deg, #8C48FF -10.68%, #FF5F3D 96.14%);
+    background: linear-gradient(79.86deg, var(--text-secondary) -10.68%, var(--blue) 96.14%);
     font-family: "Space Grotesk", Sans-serif !important;
     padding: 16px 24px;
     font-size: var(--nav-font-size) !important;

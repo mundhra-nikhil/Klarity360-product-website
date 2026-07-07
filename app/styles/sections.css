@@ -1,7 +1,7 @@
 .video-section {
-  background: #0d0d0d;
-  border-top: 1px solid #1e1e1e;
-  border-bottom: 1px solid #1e1e1e;
+  background: var(--navy);
+  border-top: 1px solid var(--border-sidebar);
+  border-bottom: 1px solid var(--border-sidebar);
   padding: 48px;
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -137,9 +137,9 @@
 }
 
 .chapter-item.active .chapter-marker {
-  background: #fff;
-  border-color: #fff;
-  box-shadow: 0 0 0 5px #0d0d0d, 0 0 14px rgba(255, 255, 255, .55);
+  background: var(--white);
+  border-color: var(--white);
+  box-shadow: 0 0 0 5px var(--navy), 0 0 14px rgba(255, 255, 255, .55);
 }
 
 .chapter-content {
@@ -182,9 +182,10 @@
 /* ── Industries section ─────────────────────────────────────── */
 .industries-section {
   padding: 40px 0;
-  background: #0A0A0B;
+  background: transparent;
   overflow: visible;
   position: relative;
+  z-index: 10;
 }
 
 .industries-inner {
@@ -235,7 +236,7 @@
 
 .industry-card {
   flex: 0 0 72vw;
-  background: #141417;
+  background: var(--navy-mid);
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
@@ -248,8 +249,8 @@
 .industry-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.6);
-  border-color: rgba(59, 130, 246, 0.4);
-  background-color: #1A1A1F;
+  border-color: rgba(15, 98, 254, 0.4);
+  background-color: var(--navy-light);
 }
 
 .industry-card-image {
@@ -289,7 +290,7 @@
 }
 
 .industry-card:hover .industry-card-text h3 {
-  color: #3B82F6;
+  color: var(--blue);
 }
 
 .industry-card-text p {

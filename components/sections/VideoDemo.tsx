@@ -178,7 +178,7 @@ export default function VideoDemo() {
   return (
     <>
       <section className={styles["vd-section"]}>
-
+        <div className={styles["vd-inner-row"]}>
         {/* ── Left: tab list ── */}
         <div ref={tabsRef} className={styles["vd-tabs"]} role="tablist" aria-label={`${PRODUCT_NAME} feature tabs`}>
           {chapters.map((chapter, i) => (
@@ -201,65 +201,67 @@ export default function VideoDemo() {
           ))}
         </div>
 
-        {/* ── Middle: golden vertical progress bar ── */}
-        <div
-          ref={barWrapRef}
-          className={styles["vd-bar-wrap"]}
-          aria-hidden="true"
-        >
-          {/* Fill height mapped to dot positions for proportional section scaling */}
-          <div
-            className={styles["vd-bar-fill"]}
-            style={{ height: `${barFillPct}%` }}
-          />
-
-          {/* Per-chapter marker dots at measured tab-center positions */}
-          {chapters.map((chapter, i) => {
-            const topPct =
-              dotPositions.length === chapters.length
-                ? dotPositions[i]
-                : (chapter.timestamp / measuredDuration) * 100;
-            return (
-              <div
-                key={chapter.title}
-                className={`${styles["vd-dot"]} ${activeChapter === i ? styles["vd-dot-active"] : ""}`}
-                style={{ top: `${topPct}%` }}
-                onClick={() => seekToChapter(chapter.timestamp, i)}
-                role="button"
-                tabIndex={0}
-                aria-label={`Jump to ${chapter.title}`}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    seekToChapter(chapter.timestamp, i);
-                  }
-                }}
-              />
-            );
-          })}
-        </div>
-
         {/* ── Right: single video with padding wrapper ── */}
         <div className={styles["vd-video-col"]}>
           <div className={styles["vd-video-pad"]}>
-            <video
-              ref={demoVideoRef}
-              id="demo-video"
-              className={styles["vd-video"]}
-              autoPlay
-              muted
-              playsInline
-              disablePictureInPicture
-              controlsList="nodownload nofullscreen noremoteplayback"
-              onLoadedMetadata={handleLoadedMetadata}
-              onSeeked={handleTimeUpdate}
-              onTimeUpdate={handleTimeUpdate}
-            >
-              <source src={`${BASE_PATH}/klarity360-demo.mp4`} type="video/mp4" />
-            </video>
+            <div className={styles["vd-video-wrapper"]}>
+              {/* ── Middle: golden vertical progress bar (Moved to precisely match video height) ── */}
+              <div
+                ref={barWrapRef}
+                className={styles["vd-bar-wrap"]}
+                aria-hidden="true"
+              >
+                {/* Fill height mapped to dot positions for proportional section scaling */}
+                <div
+                  className={styles["vd-bar-fill"]}
+                  style={{ height: `${barFillPct}%` }}
+                />
+
+                {/* Per-chapter marker dots at measured tab-center positions */}
+                {chapters.map((chapter, i) => {
+                  const topPct =
+                    dotPositions.length === chapters.length
+                      ? dotPositions[i]
+                      : (chapter.timestamp / measuredDuration) * 100;
+                  return (
+                    <div
+                      key={chapter.title}
+                      className={`${styles["vd-dot"]} ${activeChapter === i ? styles["vd-dot-active"] : ""}`}
+                      style={{ top: `${topPct}%` }}
+                      onClick={() => seekToChapter(chapter.timestamp, i)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Jump to ${chapter.title}`}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          seekToChapter(chapter.timestamp, i);
+                        }
+                      }}
+                    />
+                  );
+                })}
+              </div>
+
+              <video
+                ref={demoVideoRef}
+                id="demo-video"
+                className={styles["vd-video"]}
+                autoPlay
+                muted
+                playsInline
+                disablePictureInPicture
+                controlsList="nodownload nofullscreen noremoteplayback"
+                onLoadedMetadata={handleLoadedMetadata}
+                onSeeked={handleTimeUpdate}
+                onTimeUpdate={handleTimeUpdate}
+              >
+                <source src={`${BASE_PATH}/klarity360-demo.mp4`} type="video/mp4" />
+              </video>
+            </div>
           </div>
         </div>
-
+        </div>
       </section>
     </>
   );

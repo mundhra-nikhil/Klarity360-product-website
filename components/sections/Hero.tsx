@@ -71,8 +71,8 @@ export default function Hero({ showAnnouncement, barRef }: HeroProps) {
           <p className="hero-sub">
             {PRODUCT_NAME} compares datasets across systems to help QA and business users validate migrated or transformed data. Engineered with a Secure-by-Design and Secure-by-Default philosophy.
           </p>
-          <Link href="https://kanerika.com/contact-us/" target="_blank" rel="noopener noreferrer" className="hero-cta">
-            Request a Demo
+          <Link href="https://sit-klarity360.kanerika.com/login" target="_blank" rel="noopener noreferrer" className="hero-cta">
+            Try Now
           </Link>
         </div>
 
