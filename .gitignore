@@ -1,7 +1,8 @@
 node_modules/
 .next/
+.opencode/
+graphify-out/
+.agents/
 out/
 *.log
 .env*
-public/full-bg-video.mp4
-public/klarity360-demo.mp4

@@ -70,5 +70,5 @@ export function useScrollProgress({
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", update);
     };
-  }, []); // intentionally empty — refs are stable across renders
+  }, [bgVideoRef, overlayExtraRef, heroContentRef, scrollHintRef, heroStageRef]); // refs are stable across renders when properly memoized in parent components
 }

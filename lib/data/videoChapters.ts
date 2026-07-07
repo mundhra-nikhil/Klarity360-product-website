@@ -10,26 +10,26 @@ export interface Chapter {
 export const chapters: Chapter[] = [
   {
     timestamp: 0,
-    title: "Connect to Data Source",
+    title: "Dashboard & Process Overview",
     description:
-      "Connect an existing data source or bring a new connection to life inside of ${PRODUCT_NAME}'s context window within seconds.",
+      "Land on the Klarity360 dashboard: live task tracking, status KPIs, approvals, and a notifications feed surfacing reconciliation results as processes complete.",
   },
   {
-    timestamp: 10,
-    title: "Knowledge Guide",
+    timestamp: 4,
+    title: "Connecting Data Sources",
     description:
-      "Visualize how tables and columns connect as lineages and schemas. ${PRODUCT_NAME} uses these graphs to plan and resolve queries and reduce ambiguity.",
+      "Securely connect source and target databases — Oracle, Microsoft Fabric, and Excel/CSV files — using outbound-only connectivity that keeps your environment in control.",
   },
   {
-    timestamp: 20,
-    title: "Telemetry Insights",
-    description: "Track system health and query patterns across your workspace.",
+    timestamp: 8,
+    title: "Creating a New Process",
+    description:
+      "Configure a reconciliation process end to end — mappings, validation rules, and tolerances — and watch it initialize and run against your connected sources.",
   },
   {
-    timestamp: 28,
-    title: "Ask ${PRODUCT_NAME} Directly",
+    timestamp: 49,
+    title: "Exporting the Reconciliation Report",
     description:
-      "Chat with ${PRODUCT_NAME} to build comprehensive reports and get answers to urgent questions in natural language. ${PRODUCT_NAME} brings together a unique and powerful system to build the right graphs, summaries and analysis for you.",
+      "Once the run finishes with zero discrepancies, generate and download the full reconciliation report for review, audit, or sharing with stakeholders.",
   },
 ];
-

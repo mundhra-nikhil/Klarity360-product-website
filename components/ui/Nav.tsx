@@ -3,9 +3,10 @@
 import DocsSearch from "@/components/docs/DocsSearch";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
-import { PRODUCT_NAME } from '@/lib/constants';
+import { BASE_PATH } from "@/lib/constants";
 
 
 /**
@@ -62,7 +63,14 @@ export default function Nav({ showDocsSearch = false }: NavProps) {
   return (
     <nav ref={navRef}>
       <Link href="/" className="nav-logo" onClick={() => setIsOpen(false)}>
-        <span className="font-extrabold text-2xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-500 to-blue-500 dark:from-rose-400 dark:via-purple-400 dark:to-blue-400"> {PRODUCT_NAME} </span>
+        <Image
+          src={`${BASE_PATH}/klarity-logo.png`}
+          alt="Klarity logo"
+          width={140}
+          height={40}
+          priority
+          className="h-9 w-auto object-contain"
+        />
         {showDocsSearch && (
           <span className="text-black dark:text-white font-bold text-2xl hidden sm:inline-block">Docs</span>
         )}

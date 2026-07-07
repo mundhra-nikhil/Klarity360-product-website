@@ -460,7 +460,7 @@
   }
 
   .hero-h1 {
-    font-size: clamp(42px, 13vw, 56px);
+    font-size: clamp(24px, 10vw, 42px);
   }
 
   .hero-sub {

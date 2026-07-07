@@ -252,7 +252,7 @@ nav {
 
 .hero-h1 {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(52px, 5.5vw, 74px);
+  font-size: clamp(36px, 5vw, 64px);
   font-weight: 700;
   color: #fff;
   line-height: 1.05;
