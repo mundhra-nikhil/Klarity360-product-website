@@ -41,14 +41,14 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: #C9A84C;
+  background: #fff;
   border-radius: 0 2px 2px 0;
   opacity: 0;
   transition: opacity 200ms ease;
 }
 
 .vd-tab.vd-active {
-  background: rgba(201, 168, 76, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 .vd-tab.vd-active::before {
   opacity: 1;
@@ -109,8 +109,8 @@
   left: 0;
   right: 0;
   border-radius: 999px;
-  background: #C9A84C;
-  box-shadow: 0 0 8px #C9A84C, 0 0 20px rgba(201, 168, 76, 0.35);
+  background: #fff;
+  box-shadow: 0 0 8px #fff, 0 0 20px rgba(255, 255, 255, 0.35);
   overflow: hidden;
   pointer-events: none;
 }
@@ -155,8 +155,8 @@
 .vd-dot.vd-dot-active {
   width: 8px;
   height: 8px;
-  background: #C9A84C;
-  box-shadow: 0 0 6px #C9A84C, 0 0 14px rgba(201, 168, 76, 0.5);
+  background: #fff;
+  box-shadow: 0 0 6px #fff, 0 0 14px rgba(255, 255, 255, 0.5);
 }
 
 .vd-dot:not(.vd-dot-active):hover {
