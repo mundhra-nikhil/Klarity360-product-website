@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "tsx node_modules/mocha/bin/mocha.js \"test/**/*.test.ts\" \"test/**/*.test.tsx\" --require test/setup.ts"
+    "test": "tsx node_modules/mocha/bin/mocha.js \"test/**/*.test.ts\" \"test/**/*.test.tsx\" --require test/setup.ts --exit"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
