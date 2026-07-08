@@ -106,8 +106,8 @@
 
 .caps-panel {
   position: relative;
-  /* Only need enough height for the tallest content, not a fixed minimum */
-  min-height: 350px;
+  /* Ensure enough height for the diagram canvas with aspect ratio */
+  min-height: 500px;
 }
 
 .caps-feature-instance {

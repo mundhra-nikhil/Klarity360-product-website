@@ -210,6 +210,40 @@ function svgDefs() {
           </feMerge>
         </filter>
       ))}
+      {/* Arrowhead marker for flow direction */}
+      <marker
+        id="fae-arrow-amber"
+        markerWidth="10"
+        markerHeight="10"
+        refX="9"
+        refY="3"
+        orient="auto"
+        markerUnits="strokeWidth"
+      >
+        <path d="M0,0 L0,6 L9,3 z" fill="#f2a63c" />
+      </marker>
+      <marker
+        id="fae-arrow-green"
+        markerWidth="10"
+        markerHeight="10"
+        refX="9"
+        refY="3"
+        orient="auto"
+        markerUnits="strokeWidth"
+      >
+        <path d="M0,0 L0,6 L9,3 z" fill="#3fbe83" />
+      </marker>
+      <marker
+        id="fae-arrow-red"
+        markerWidth="10"
+        markerHeight="10"
+        refX="9"
+        refY="3"
+        orient="auto"
+        markerUnits="strokeWidth"
+      >
+        <path d="M0,0 L0,6 L9,3 z" fill="#e2574c" />
+      </marker>
     </defs>
   );
 }
@@ -307,29 +341,64 @@ function ConnectorLayer({
         const toneKey = c.tone ?? "amber";
         const tone = TONE[toneKey];
         const isGhost = c.tone === "muted";
+        const pathD = `M${from.x},${from.y} L${to.x},${to.y}`;
 
         return (
-          <motion.line
-            key={id}
-            x1={from.x}
-            y1={from.y}
-            x2={to.x}
-            y2={to.y}
-            initial={false}
-            animate={{
-              stroke: isActive ? tone.color : isGhost ? "#3a3f49" : LINE,
-              strokeWidth: isActive ? 2 : 1.5,
-              opacity: isGhost ? 0.5 : isActive ? 1 : 0.65,
-              strokeDasharray: isActive ? "0 0" : "5 6",
-            }}
-            transition={{ duration: 0.25 }}
-            strokeLinecap="round"
-            filter={
-              isActive && toneKey !== "muted"
-                ? `url(#fae-glow-${toneKey})`
-                : undefined
-            }
-          />
+          <g key={id}>
+            <motion.line
+              x1={from.x}
+              y1={from.y}
+              x2={to.x}
+              y2={to.y}
+              initial={false}
+              animate={{
+                stroke: isActive ? "#D4AF6A" : isGhost ? "#3a3f49" : LINE,
+                strokeWidth: isActive ? 2 : 1.5,
+                opacity: isGhost ? 0.5 : isActive ? 1 : 0.65,
+                strokeDasharray: isActive ? "8 12" : "5 6",
+              }}
+              transition={{ duration: 0.25 }}
+              strokeLinecap="round"
+              className={isActive ? "fae-flow-line" : ""}
+              style={
+                isActive
+                  ? {
+                      animation: "flowDash 1s linear infinite",
+                    }
+                  : undefined
+              }
+              filter={
+                isActive && toneKey !== "muted"
+                  ? `url(#fae-glow-${toneKey})`
+                  : undefined
+              }
+            />
+            {isActive && !isGhost && (
+              <>
+                <circle r="3.5" fill={tone.color}>
+                  <animateMotion
+                    dur="1.2s"
+                    repeatCount="indefinite"
+                    path={pathD}
+                  />
+                </circle>
+                <path
+                  d="M-3,-3 L3,0 L-3,3"
+                  fill="none"
+                  stroke={tone.color}
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <animateMotion
+                    dur="1.2s"
+                    repeatCount="indefinite"
+                    path={pathD}
+                  />
+                </path>
+              </>
+            )}
+          </g>
         );
       })}
     </svg>
