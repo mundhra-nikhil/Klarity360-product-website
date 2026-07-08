@@ -1,46 +1,20 @@
 "use client";
-import { useRef, useEffect, RefObject } from "react";
+import { useRef } from "react";
 import Nav from "@/components/ui/Nav";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import Link from "next/link";
 import { BASE_PATH, PRODUCT_NAME } from '@/lib/constants';
 
-interface HeroProps {
-  /** Whether the announcement bar is visible; used to compute the sticky offset. */
-  showAnnouncement: boolean;
-  /** Ref to the AnnouncementBar wrapper so its height can be measured. */
-  barRef: RefObject<HTMLDivElement | null>;
-
-}
-
 /**
  * Hero — full-bleed sticky video hero with scroll-driven animations.
  */
-export default function Hero({ showAnnouncement, barRef }: HeroProps) {
+export default function Hero() {
   const heroRef = useRef<HTMLDivElement>(null);
   const bgVideoRef = useRef<HTMLVideoElement>(null);
   const overlayExtraRef = useRef<HTMLDivElement>(null);
   const heroContentRef = useRef<HTMLDivElement>(null);
   const scrollHintRef = useRef<HTMLDivElement>(null);
   const heroStageRef = useRef<HTMLDivElement>(null);
-
-  // Keep hero height in sync with announcement bar
-  useEffect(() => {
-    const adjustHero = (): void => {
-      if (!heroRef.current) return;
-      const barHeight = showAnnouncement
-        ? barRef.current?.offsetHeight ?? 0
-        : 0;
-      heroRef.current.style.setProperty(
-        "--announcement-height",
-        `${barHeight}px`
-      );
-    };
-
-    adjustHero();
-    window.addEventListener("resize", adjustHero);
-    return () => window.removeEventListener("resize", adjustHero);
-  }, [showAnnouncement, barRef]);
 
   // Scroll-driven blur / reveal animation
   useScrollProgress({

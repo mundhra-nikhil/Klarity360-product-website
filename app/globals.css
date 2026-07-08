@@ -4,6 +4,7 @@
 @import "./styles/sections.css";
 @import "./styles/footer.css";
 @import "./styles/docs.css";
+@import "./styles/feature-explorer.css";
 
 @source "../app";
 @source "../components";
