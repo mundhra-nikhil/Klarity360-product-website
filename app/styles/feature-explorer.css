@@ -30,21 +30,21 @@
   /* Brand */
   --fae-amber: #f2a63c;
   --fae-amber-soft: rgba(242, 166, 60, 0.16);
-  --fae-green: #3fbe83;
-  --fae-green-soft: rgba(63, 190, 131, 0.16);
-  --fae-red: #e2574c;
-  --fae-red-soft: rgba(226, 87, 76, 0.16);
-  --fae-muted: #5b6270;
+  --fae-green: var(--green);
+  --fae-green-soft: rgba(36, 161, 72, 0.16);
+  --fae-red: var(--red);
+  --fae-red-soft: rgba(218, 30, 40, 0.16);
+  --fae-muted: var(--gray-40);
 
   /* Surfaces */
-  --fae-bg: #0a0b0f;
-  --fae-stage: #0d0e13;
-  --fae-tile: #161920;
-  --fae-tile-hi: #1d212b;
-  --fae-line: #2c3038;
-  --fae-ink: #e7e9ee;
-  --fae-ink-dim: #8b909c;
-  --fae-ink-faint: #5b6270;
+  --fae-bg: var(--navy);
+  --fae-stage: var(--navy-mid);
+  --fae-tile: var(--navy-light);
+  --fae-tile-hi: var(--navy-mid);
+  --fae-line: var(--border-sidebar);
+  --fae-ink: var(--white);
+  --fae-ink-dim: var(--gray-20);
+  --fae-ink-faint: var(--gray-40);
 
   --fae-canvas-w: 760px;
   --fae-canvas-h: 500px;

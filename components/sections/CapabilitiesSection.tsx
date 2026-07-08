@@ -29,7 +29,7 @@ export default function CapabilitiesSection() {
   ];
 
   return (
-    <section className="caps-section">
+    <section className="caps-section fae">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
