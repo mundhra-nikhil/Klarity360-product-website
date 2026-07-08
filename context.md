@@ -26,12 +26,16 @@ next-themes:           ^0.4.6
 
 ## Critical Conventions
 
-### Tailwind v4 & CSS
+### Tailwind v4 & CSS & Theme Architecture
 
-- **Tailwind Config:** Theme tokens and `darkMode: "class"` are configured in `tailwind.config.ts`. Custom colors (like `docs-bg`, `docs-sidebar`, `docs-card`) are located here.
-- **CSS Architecture:** `app/globals.css` imports `@tailwindcss/postcss` and multiple modular CSS files from `app/styles/` (e.g., `base.css`, `hero.css`, `sections.css`, `footer.css`, `docs.css`).
-- Content scanning is explicitly defined in `tailwind.config.ts` to include `app`, `components`, and `lib`.
-- **PostCSS:** Configured in `postcss.config.mjs` using `@tailwindcss/postcss`.
+- **Theme & Variables (`app/styles/theme.css`):** Defines the core design system's CSS custom properties. It maps core colors (e.g., `--navy` as `#0B1628`, `--blue` as `#0F62FE`, `--cyan` as `#33B1FF`, `--white` as `#F4F4F4`), layout dimensions, spacing, border radii, shadows, and transitions. It also registers Material Design design tokens (`--mat-sys-*`) dynamically using the native CSS `light-dark()` function.
+- **Theme Mappings (`app/styles/base.css`):** Maps logical CSS variables (e.g., `--bg`, `--bg-alt`, `--accent`, and `--docs-*` variables) to theme tokens. In the default light theme, these map to a warm stone scale. Under the `.dark` class, these are overridden to use the navy/blue system. These variables are registered inside the Tailwind CSS v4 `@theme` directive (e.g., `--color-bg: var(--bg)`), exposing them as utility classes.
+- **Tailwind Config (`tailwind.config.ts`):** Handles content scanning patterns (`app`, `components`, `lib`) and holds legacy Tailwind configurations. `darkMode: "class"` is configured here to enable class-based dark mode toggling.
+- **CSS Architecture (`app/globals.css`):** Imports `@tailwindcss/postcss` and links modular stylesheets sequentially: `theme.css` → `base.css` → `hero.css` → `sections.css` → `footer.css` → `docs.css`.
+- **PostCSS:** Uses `@tailwindcss/postcss` in `postcss.config.mjs`.
+- **Landing Page vs. Docs Theme Behavior:**
+  - **Landing Page (`app/page.tsx`):** Employs a persistent dark aesthetic built around the dark navy theme (`var(--navy)`). The body background is hardcoded to `var(--navy)` in `base.css`.
+  - **Documentation Page (`app/docs/`):** Supports dynamic light/dark mode toggling. Uses `next-themes` and a theme toggler (`.theme-toggle-btn` class) in the docs page header to toggle the `.dark` class on the `<html>` or `<body>` element. This dynamically rebinds the CSS variables mapped in `base.css` (e.g., switching the page background `bg-docs-bg-page` from the light warm stone to dark navy).
 
 ### Path Alias: `@/*` → Project Root
 
@@ -107,4 +111,4 @@ npm run test             # Run Mocha tests via tsx
 
 ---
 
-**Last updated:** 2026-06-24 | Verified against actual codebase
+**Last updated:** 2026-07-08 | Verified against actual codebase

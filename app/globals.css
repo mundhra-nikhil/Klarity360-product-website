@@ -6,6 +6,7 @@
 @import "./styles/footer.css";
 @import "./styles/docs.css";
 @import "./styles/glass.css";
+@import "./styles/feature-explorer.css";
 
 @source "../app";
 @source "../components";

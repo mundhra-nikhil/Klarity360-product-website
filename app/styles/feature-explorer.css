@@ -1,0 +1,526 @@
+/* =========================================================================
+   FeatureArchitectureExplorer
+   Local amber accent (#F2A63C) intentionally diverges from the site's global
+   indigo tokens — scoped here only, so nothing else on the site changes.
+   ========================================================================= */
+
+/* ---------- Flow line animations ---------- */
+
+@keyframes flowDash {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -22;
+  }
+}
+
+@keyframes pulseArrow {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(0) scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.fae {
+  /* Brand */
+  --fae-amber: #f2a63c;
+  --fae-amber-soft: rgba(242, 166, 60, 0.16);
+  --fae-green: var(--green);
+  --fae-green-soft: rgba(36, 161, 72, 0.16);
+  --fae-red: var(--red);
+  --fae-red-soft: rgba(218, 30, 40, 0.16);
+  --fae-muted: var(--gray-40);
+
+  /* Surfaces */
+  --fae-bg: var(--navy);
+  --fae-stage: var(--navy-mid);
+  --fae-tile: var(--navy-light);
+  --fae-tile-hi: var(--navy-mid);
+  --fae-line: var(--border-sidebar);
+  --fae-ink: var(--white);
+  --fae-ink-dim: var(--gray-20);
+  --fae-ink-faint: var(--gray-40);
+
+  --fae-canvas-w: 760px;
+  --fae-canvas-h: 500px;
+}
+
+.fae-section {
+  background: var(--fae-bg);
+  color: var(--fae-ink);
+}
+
+/* ---------- Layout shell ---------- */
+
+.fae-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+@media (min-width: 960px) {
+  .fae-row {
+    flex-direction: row;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+  .fae-row--reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.fae-list-col {
+  width: 100%;
+}
+
+@media (min-width: 960px) {
+  .fae-list-col {
+    width: 44%;
+    flex-shrink: 0;
+  }
+}
+
+.fae-diagram-col {
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 960px) {
+  .fae-diagram-col {
+    width: 56%;
+  }
+}
+
+.fae-title {
+  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  color: var(--fae-ink);
+  margin-bottom: 0.5rem;
+}
+
+.fae-subtitle {
+  font-size: 0.975rem;
+  line-height: 1.5;
+  color: var(--fae-ink-dim);
+  margin-bottom: 1.5rem;
+  max-width: 46ch;
+}
+
+/* ---------- Step list (stepper rail) ---------- */
+
+.fae-steps {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The vertical connecting line behind the dots. */
+.fae-steps::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--fae-line);
+  border-radius: 2px;
+}
+
+.fae-step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 0.6rem 0.6rem 0.6rem 0;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fae-step:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.fae-step:focus-visible {
+  outline: 2px solid var(--fae-amber);
+  outline-offset: 2px;
+}
+
+.fae-dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 4px;
+  margin-left: 0;
+  border-radius: 50%;
+  background: var(--fae-stage);
+  border: 2px solid var(--fae-line);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.fae-step.is-active .fae-dot {
+  background: var(--fae-amber);
+  border-color: var(--fae-amber);
+  box-shadow: 0 0 0 4px var(--fae-amber-soft), 0 0 12px var(--fae-amber);
+}
+
+.fae-step-body {
+  min-width: 0;
+  padding-top: 1px;
+}
+
+.fae-step-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.975rem;
+  font-weight: 500;
+  color: var(--fae-ink-dim);
+  transition: color 0.2s ease;
+}
+
+.fae-step.is-active .fae-step-title {
+  color: var(--fae-ink);
+  font-weight: 600;
+}
+
+.fae-step-desc {
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--fae-ink-faint);
+}
+
+.fae-chev {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--fae-ink-faint);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.fae-step.is-active .fae-chev {
+  color: var(--fae-amber);
+  transform: translateX(2px);
+}
+
+.fae-cta {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fae-bg);
+  background: var(--fae-amber);
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 0 0 var(--fae-amber-soft);
+}
+
+.fae-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--fae-amber-soft);
+}
+
+/* ---------- Diagram canvas ---------- */
+
+.fae-canvas {
+  position: relative;
+  width: 100%;
+  max-width: var(--fae-canvas-w);
+  /* Canvas height tracks width via aspect-ratio, so the JS only has to set
+     the stage's uniform scale — no height math needed. */
+  aspect-ratio: var(--fae-canvas-w) / var(--fae-canvas-h);
+  margin: 0 auto;
+  overflow: visible; /* Allow stage to extend beyond for visual effect */
+}
+
+.fae-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--fae-canvas-w);
+  height: var(--fae-canvas-h);
+  transform-origin: top left;
+}
+
+/* Isometric "floor" — a dotted plane tilted in perspective. Applied to a
+   background-only layer so the dots distort, NOT the icons on the tiles. */
+.fae-grid {
+  position: absolute;
+  inset: -40%;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 1.4px
+  );
+  background-size: 22px 22px;
+  transform: perspective(900px) rotateX(40deg) translateZ(0);
+  transform-origin: 50% 50%;
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 60% at 50% 45%,
+    #000 30%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 60% 60% at 50% 45%,
+    #000 30%,
+    transparent 78%
+  );
+  pointer-events: none;
+}
+
+/* Connector SVG overlay */
+.fae-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.fae-flow-line {
+  animation: flowDash 1s linear infinite;
+}
+
+/* ---------- Tiles ---------- */
+
+/* Positioning wrapper — owns the centering transform. Size is set inline
+   per tile (76 default; 92 engine; 84 badge). The animated visual layer
+   lives inside, so Framer Motion's `transform` never clobbers centering. */
+.fae-tile-pos {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.fae-tile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: var(--fae-tile);
+  border: 1px solid var(--fae-line);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 6px 16px rgba(0, 0, 0, 0.45);
+  color: var(--fae-ink-dim);
+  transition: color 0.25s ease;
+}
+
+/* Faint floor shadow under each tile for the "floating" read. */
+.fae-tile::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 58px;
+  height: 10px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.55),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.fae-tile-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fae-tile-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fae-tile-label {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  color: var(--fae-ink-faint);
+  transition: color 0.25s ease;
+  pointer-events: none;
+}
+
+.fae-tile.is-active .fae-tile-label {
+  color: var(--fae-ink);
+}
+
+/* Small key badge pinned to a tile corner. */
+.fae-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--fae-tile-hi);
+  border: 1px solid var(--fae-line);
+  color: var(--fae-amber);
+}
+
+.fae-badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Engine tile is a touch larger / distinct. */
+.fae-tile--engine {
+  width: 92px;
+  height: 92px;
+  border-radius: 20px;
+}
+
+.fae-tile--engine .fae-tile-icon {
+  width: 38px;
+  height: 38px;
+}
+
+/* Scan-bar tile: the inner fill is animated by the component. */
+.fae-scan-track {
+  position: absolute;
+  inset: 22px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.fae-scan-fill {
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--fae-amber));
+}
+
+/* 6× badge tile. */
+.fae-tile--badge {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+}
+
+/* Monogram (placeholder for logos not in simple-icons). */
+.fae-monogram {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+  color: var(--fae-ink-dim);
+}
+
+/* ---------- Floating tooltip pills ---------- */
+
+.fae-tip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 10.5px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: var(--fae-ink);
+  background: rgba(22, 25, 32, 0.92);
+  border: 1px solid var(--fae-amber);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  /* slight handwritten tilt */
+  rotate: -3deg;
+}
+
+/* ---------- Section shell + heading ---------- */
+
+.fae-section {
+  padding: clamp(4rem, 9vw, 7rem) clamp(1.25rem, 5vw, 4rem);
+}
+
+.fae-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fae-amber);
+  margin-bottom: 0.75rem;
+}
+
+.fae-heading {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.fae-lede {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--fae-ink-dim);
+  max-width: 62ch;
+}
+
+.fae-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.fae-instance {
+  padding: clamp(2rem, 4vw, 3.25rem) 0;
+}
+
+.fae-instance + .fae-instance {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .fae-step,
+  .fae-dot,
+  .fae-chev,
+  .fae-tile,
+  .fae-tile-label,
+  .fae-cta {
+    transition: none !important;
+  }
+  .fae-scan-fill {
+    display: none;
+  }
+}

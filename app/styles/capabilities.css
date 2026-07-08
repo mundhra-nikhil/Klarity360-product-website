@@ -1,0 +1,151 @@
+/* =========================================================================
+   CapabilitiesSection - Tab-driven feature showcase
+   Inherits amber accent from feature-explorer.css
+   ========================================================================= */
+
+.caps-section {
+  background: var(--fae-bg);
+  color: var(--fae-ink);
+}
+
+/* ---------- Section header ---------- */
+
+.caps-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--fae-amber);
+  margin-bottom: 0.75rem;
+}
+
+.caps-heading {
+  font-size: clamp(1.9rem, 3.6vw, 2.9rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.caps-lede {
+  font-size: 1.02rem;
+  line-height: 1.6;
+  color: var(--fae-ink-dim);
+  max-width: 62ch;
+}
+
+/* ---------- Tab switcher ---------- */
+
+.caps-tabs-wrapper {
+  margin-bottom: 1rem;
+}
+
+.caps-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--fae-line);
+  border-radius: 14px;
+  overflow-x: auto;
+  /* Hide scrollbar but keep functionality */
+  scrollbar-width: thin;
+  scrollbar-color: var(--fae-line) transparent;
+}
+
+.caps-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.caps-tabs::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.caps-tabs::-webkit-scrollbar-thumb {
+  background: var(--fae-line);
+  border-radius: 2px;
+}
+
+.caps-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fae-ink-dim);
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.caps-tab:hover {
+  color: var(--fae-ink);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.caps-tab:focus-visible {
+  outline: 2px solid var(--fae-amber);
+  outline-offset: 2px;
+}
+
+.caps-tab.is-active {
+  color: var(--fae-amber);
+  background: rgba(242, 166, 60, 0.08);
+  font-weight: 600;
+}
+
+/* ---------- Content panel ---------- */
+
+.caps-panel {
+  position: relative;
+  /* Ensure enough height for the diagram canvas with aspect ratio */
+  min-height: auto;
+}
+
+.caps-feature-instance {
+  /* The instance wrapper handles the AnimatePresence crossfade */
+  width: 100%;
+}
+
+/* ---------- Responsive adjustments ---------- */
+
+@media (min-width: 960px) {
+  .caps-tabs-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .caps-tabs {
+    flex-wrap: nowrap;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .caps-tab {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .caps-panel {
+    min-height: auto;
+  }
+}
+
+.caps-section .fae-title,
+.caps-section .fae-subtitle {
+  display: none;
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .caps-tab {
+    transition: none !important;
+  }
+}
