@@ -8,7 +8,7 @@ import { PRODUCT_NAME } from "@/lib/constants";
  */
 export default function DeploymentArchitecture() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-gray-900 text-white relative">
+    <section className="py-24 px-6 md:px-12 lg:px-24 bg-transparent text-white relative z-10">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="lg:w-1/2">
           <h2 className="text-4xl font-bold mb-6 text-white">
@@ -33,12 +33,12 @@ export default function DeploymentArchitecture() {
           </ul>
         </div>
         <div className="lg:w-1/2 flex justify-center mt-12 lg:mt-0 relative">
-          <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full relative z-10 overflow-hidden">
+          <div className="bg-[rgba(255,255,255,0.04)] backdrop-blur-[20px] p-8 rounded-2xl shadow-[0_32px_80px_rgba(0,0,0,0.5)] border border-white/10 max-w-md w-full relative z-10 overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
             <h3 className="text-2xl font-semibold mb-6 text-center text-white">Customer Environment</h3>
             
             <div className="space-y-4">
-              <div className="bg-gray-700 rounded-lg p-4 flex items-center border border-gray-600">
+              <div className="bg-[rgba(255,255,255,0.02)] backdrop-blur-md rounded-lg p-4 flex items-center border border-white/10">
                 <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center mr-4">
                   <svg className="w-5 h-5 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
@@ -69,16 +69,16 @@ export default function DeploymentArchitecture() {
               </div>
             </div>
             
-            <div className="mt-6 pt-6 border-t border-gray-700 flex justify-center">
+            <div className="mt-6 pt-6 border-t border-white/10 flex justify-center">
               <div className="text-center">
                 <div className="flex items-center justify-center mb-2">
-                  <div className="h-0.5 w-12 bg-gray-600 relative">
-                    <div className="absolute -right-1 -top-1 w-2.5 h-2.5 border-t-2 border-r-2 border-gray-500 transform rotate-45"></div>
+                  <div className="h-0.5 w-12 bg-white/20 relative">
+                    <div className="absolute -right-1 -top-1 w-2.5 h-2.5 border-t-2 border-r-2 border-white/20 transform rotate-45"></div>
                   </div>
                   <span className="mx-3 text-xs uppercase tracking-wider text-gray-500 font-semibold">Outbound Only</span>
-                  <div className="h-0.5 w-12 bg-gray-600"></div>
+                  <div className="h-0.5 w-12 bg-white/20"></div>
                 </div>
-                <div className="bg-gray-700 rounded px-3 py-1 text-sm text-gray-300 inline-block border border-gray-600">Cloud AI / Email</div>
+                <div className="bg-[rgba(255,255,255,0.02)] backdrop-blur-md rounded px-3 py-1 text-sm text-gray-300 inline-block border border-white/10">Cloud AI / Email</div>
               </div>
             </div>
           </div>

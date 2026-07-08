@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const mammoth = require('mammoth');
 
-const docxPath = path.join(__dirname, '..', '..', 'lib', 'data', 'docs', 'content', 'Klarity360-UserGuide&ConnectorSetupDoc.docx');
-const jsonOutputPath = path.join(__dirname, '..', '..', 'lib', 'data', 'docs', 'content', 'klarity360-userguide-connectorsetupdoc.json');
+const docxPath = process.argv[2] || path.join(__dirname, '..', '..', 'lib', 'data', 'docs', 'content', 'Klarity360-UserGuide&ConnectorSetupDoc.docx');
+const jsonOutputPath = process.argv[3] || path.join(__dirname, '..', '..', 'lib', 'data', 'docs', 'content', 'klarity360-userguide-connectorsetupdoc.json');
 
 async function convert() {
   try {
