@@ -26,40 +26,12 @@ export const docCategories: DocCategory[] = [
     color: "blue",
     articles: [
       {
-        slug: "enablement-guide",
-        sidebarTitle: "Enablement Guide",
-        title: `${PRODUCT_NAME} Enablement Guide`,
-        description:
-          "Pre-requisite guide outlining the Workload Setup required for Guest Tenants before enabling ${PRODUCT_NAME}.",
-      },
-      {
-        slug: "trial-experience",
-        sidebarTitle: "Trial Experience",
-        title: "Trial Experience Document",
-        description:
-          "Comprehensive Trial Experience Guide demonstrating the initial setup and expected flows during the trial period.",
-      },
-      {
-        slug: "workload-enablement",
-        sidebarTitle: "Workload Enablement",
-        title: "Workload Enablement",
-        description:
-          "Technical specifications and steps required for configuring workload enablement across environments.",
-      },
-      {
         slug: "user-guide",
         sidebarTitle: "User Guide",
         title: "Product Docs - User Guide",
         description:
           "A comprehensive user guide outlining the complete lifecycle from trial access to full product adoption.",
-      },
-      {
-        slug: "karl-userguide-connectorsetupdoc",
-        sidebarTitle: "User Guide & Connector Setup",
-        title: `${PRODUCT_NAME} User Guide & Connector Setup`,
-        description:
-          "Detailed guide on the ${PRODUCT_NAME} User Guide and configuring connector setups for your workloads.",
-      },
+      }
     ],
   },
   {
@@ -68,27 +40,6 @@ export const docCategories: DocCategory[] = [
     sidebarTitle: "Product Info",
     color: "purple",
     articles: [
-      {
-        slug: "whitepaper",
-        sidebarTitle: "The Insight Agent",
-        title: "The Insight Agent",
-        description:
-          "Deep dive whitepaper exploring the architecture, capabilities, and benefits of ${PRODUCT_NAME} as an Insight Agent.",
-      },
-      {
-        slug: "vs-fabric",
-        sidebarTitle: `${PRODUCT_NAME} vs Fabric`,
-        title: `${PRODUCT_NAME} vs Fabric Data Agent`,
-        description:
-          "A detailed comparison between ${PRODUCT_NAME} and the Microsoft Fabric Data Agent, highlighting key differentiators.",
-      },
-      {
-        slug: "purchasing-flow",
-        sidebarTitle: "Purchasing Flow",
-        title: "SaaS Purchasing Flow",
-        description:
-          "Documentation explaining the SaaS purchasing workflow, onboarding steps, and provisioning for ${PRODUCT_NAME}.",
-      },
       {
         slug: "pricing",
         sidebarTitle: "Pricing",
@@ -111,21 +62,6 @@ export const docCategories: DocCategory[] = [
         description:
           "Comprehensive Security Document outlining compliance, infrastructure security, and data protection policies.",
       },
-      {
-        slug: "fabric-plan",
-        sidebarTitle: "Fabric Plan",
-        title: "Fabric Plan Documentation",
-        description:
-          "Technical documentation covering the integration, deployment, and security of the Fabric Plan within ${PRODUCT_NAME}.",
-      },
-      {
-        slug: "api-permissions",
-        sidebarTitle: "API Permissions",
-        title: "API Permissions",
-        description:
-          "Detailed security justification and data governance rules regarding API access and permission structures.",
-        wide: true,
-      },
     ],
   },
 ];
@@ -133,7 +69,6 @@ export const docCategories: DocCategory[] = [
 export const docSlugs = docCategories.flatMap((category) =>
   category.articles.map((article) => article.slug)
 );
-
 export function getDocArticle(slug: string): DocArticle | undefined {
   for (const category of docCategories) {
     const article = category.articles.find((entry) => entry.slug === slug);
