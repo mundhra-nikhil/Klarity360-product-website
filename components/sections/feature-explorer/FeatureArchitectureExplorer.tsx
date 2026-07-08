@@ -105,14 +105,36 @@ function useStageScale() {
   useEffect(() => {
     const el = wrapRef.current;
     if (!el || typeof ResizeObserver === "undefined") return;
+    const parentEl = el.parentElement;
+    if (!parentEl) return;
+
     const update = () => {
-      const w = el.clientWidth;
-      if (w > 0) setScale(Math.min(1.15, w / CANVAS_W)); // Increased from 1.0 to 1.15 for larger diagrams
+      const pw = parentEl.clientWidth;
+      const h = window.innerHeight;
+      const w = window.innerWidth;
+      
+      // Calculate scale based on parent width
+      let newScale = Math.min(1.15, pw / CANVAS_W);
+      
+      // Factor in height constraint on desktop viewports (min-width: 960px)
+      if (h < 850 && w >= 960) {
+        // Leave 300px for padding, section header, tabs, and margins
+        const maxScaleByHeight = Math.max(0.5, (h - 300) / CANVAS_H);
+        newScale = Math.min(newScale, maxScaleByHeight);
+      }
+      
+      setScale(newScale);
     };
+
     update();
     const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
+    ro.observe(parentEl);
+    
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
+    };
   }, []);
 
   return { wrapRef, scale };
@@ -625,7 +647,11 @@ export default function FeatureArchitectureExplorer({
       </div>
 
       <div className="fae-diagram-col">
-        <div className="fae-canvas" ref={wrapRef}>
+        <div 
+          className="fae-canvas" 
+          ref={wrapRef}
+          style={{ maxWidth: scale < 1.15 ? `${CANVAS_W * scale}px` : undefined }}
+        >
           <div className="fae-stage" style={{ transform: `scale(${scale})` }}>
             <div className="fae-grid" />
 

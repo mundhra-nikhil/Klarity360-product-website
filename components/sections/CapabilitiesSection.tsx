@@ -29,11 +29,11 @@ export default function CapabilitiesSection() {
   ];
 
   return (
-    <section className="caps-section fae py-24 px-6 md:px-12 lg:px-24">
+    <section className="caps-section fae py-6 md:py-8 px-6 md:px-12 lg:px-24">
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <motion.div
-          className="mb-12 md:mb-16 max-w-3xl"
+          className="mb-4 md:mb-6 max-w-3xl"
           initial={{ opacity: 0, y: reduced ? 0 : 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-10% 0px" }}
