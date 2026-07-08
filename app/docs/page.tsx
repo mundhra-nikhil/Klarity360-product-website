@@ -8,7 +8,9 @@ import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
 import { docCategories } from "@/lib/data/docs/manifest";
 import { useEffect, useState } from "react";
 import { PRODUCT_NAME } from '@/lib/constants';
-import ParallaxCubes from "@/components/ui/ParallaxCubes";
+import dynamic from 'next/dynamic';
+
+const ParallaxCubes = dynamic(() => import('@/components/ui/ParallaxCubes'), { ssr: false });
 
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("getting-started");

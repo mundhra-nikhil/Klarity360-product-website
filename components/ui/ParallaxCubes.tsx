@@ -44,29 +44,34 @@ const ParallaxCubes = ({ staticMode = false }: ParallaxCubesProps) => {
   useEffect(() => {
     if (staticMode) return; // Disable GSAP scrolljacking on complex layouts like Docs
 
-    let ctx = gsap.context(() => {
-      const cubes = gsap.utils.toArray<HTMLElement>('.parallax-cube-wrapper');
-      
-      cubes.forEach((cube) => {
-        const speed = parseFloat(cube.getAttribute('data-speed') || '0.1');
+    let mm = gsap.matchMedia();
+    
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      let ctx = gsap.context(() => {
+        const cubes = gsap.utils.toArray<HTMLElement>('.parallax-cube-wrapper');
         
-        gsap.to(cube, {
-          y: () => {
-            const h = containerRef.current?.offsetHeight || window.innerHeight;
-            return -h * speed;
-          },
-          ease: "none",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          }
+        cubes.forEach((cube) => {
+          const speed = parseFloat(cube.getAttribute('data-speed') || '0.1');
+          
+          gsap.to(cube, {
+            y: () => {
+              const h = containerRef.current?.offsetHeight || window.innerHeight;
+              return -h * speed;
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            }
+          });
         });
-      });
-    }, containerRef);
+      }, containerRef);
+      return () => ctx.revert();
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, [staticMode]);
 
   const activeCubes = staticMode ? DOCS_CUBES : HOME_CUBES;
@@ -89,18 +94,29 @@ const ParallaxCubes = ({ staticMode = false }: ParallaxCubesProps) => {
               animation: `${cube.anim} ${cube.dur} ease-in-out infinite ${cube.anim === "float2" ? "reverse" : "normal"} ${cube.delay}`
             }}
           >
-            <img
-              src={`${BASE_PATH}/assets/images/login-deco-cube-${cube.type}-light.svg`}
-              alt="Cube Light"
-              className="block dark:hidden opacity-40 transition-all duration-300"
-              style={{ width: cube.size }}
-            />
-            <img
-              src={`${BASE_PATH}/assets/images/login-deco-cube-${cube.type}.svg`}
-              alt="Cube Dark"
-              className="hidden dark:block opacity-[0.06] transition-all duration-300"
-              style={{ width: cube.size }}
-            />
+            {staticMode ? (
+              <>
+                <img
+                  src={`${BASE_PATH}/assets/images/login-deco-cube-${cube.type}-light.svg`}
+                  alt="Cube Light"
+                  className="block dark:hidden opacity-40 transition-all duration-300"
+                  style={{ width: cube.size }}
+                />
+                <img
+                  src={`${BASE_PATH}/assets/images/login-deco-cube-${cube.type}.svg`}
+                  alt="Cube Dark"
+                  className="hidden dark:block opacity-[0.06] transition-all duration-300"
+                  style={{ width: cube.size }}
+                />
+              </>
+            ) : (
+              <img
+                src={`${BASE_PATH}/assets/images/login-deco-cube-${cube.type}.svg`}
+                alt="Cube"
+                className="opacity-[0.06] transition-all duration-300"
+                style={{ width: cube.size }}
+              />
+            )}
           </div>
         </div>
       ))}

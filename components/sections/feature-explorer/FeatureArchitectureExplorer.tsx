@@ -113,8 +113,8 @@ function useStageScale() {
       const h = window.innerHeight;
       const w = window.innerWidth;
       
-      // Calculate scale based on parent width
-      let newScale = Math.min(1.15, pw / CANVAS_W);
+      // Calculate scale based on parent width. Keep a minimum scale on mobile for readability.
+      let newScale = Math.min(1.15, Math.max(0.65, pw / CANVAS_W));
       
       // Factor in height constraint on desktop viewports (min-width: 960px)
       if (h < 850 && w >= 960) {
@@ -646,7 +646,7 @@ export default function FeatureArchitectureExplorer({
         />
       </div>
 
-      <div className="fae-diagram-col">
+      <div className="fae-diagram-col overflow-x-auto">
         <div 
           className="fae-canvas" 
           ref={wrapRef}

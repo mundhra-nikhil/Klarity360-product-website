@@ -106,6 +106,17 @@ Scroll zone: **0 → 280px**
 | Hero content Y translate | 28px | 0px | Hero content |
 | Scroll hint opacity | 1 | 0 | Fades out at 66% of scroll zone |
 
+## Component Architecture
+
+- **`ParallaxCubes`**: Uses GSAP for background parallax effects. Lazy-loaded via `next/dynamic` to improve performance and wrapped in `gsap.matchMedia` to respect `prefers-reduced-motion`.
+- **`CapabilitiesSection`**: A unified, tab-driven interface that replaces scrolling with a consolidated view of feature showcases.
+- **`FeatureArchitectureExplorer`**: A dynamic, scale-to-fit SVG interactive architecture diagram component. Includes a horizontal scroll fallback for readability on mobile screens.
+
+## Testing
+
+Unit tests for React components are located in the `test/` directory. The test suite uses Mocha, `global-jsdom`, and `@testing-library/react`. 
+Run tests via `npm test`.
+
 ## Accessibility
 
 - Semantic HTML with proper heading hierarchy

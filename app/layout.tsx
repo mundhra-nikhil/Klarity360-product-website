@@ -40,7 +40,7 @@ export default function RootLayout({
       <head>
         <link rel="preload" as="video" href="/full-bg-video.mp4" type="video/mp4" fetchPriority="high" />
       </head>
-      <body className={`${ibmPlexSans.variable} ${spaceGrotesk.variable} ${poppins.variable} elementor-kit-6 elementor-115036`}>
+      <body suppressHydrationWarning className={`${ibmPlexSans.variable} ${spaceGrotesk.variable} ${poppins.variable} elementor-kit-6 elementor-115036`}>
         <ThemeProvider attribute="class" defaultTheme="light">
           {children}
         </ThemeProvider>

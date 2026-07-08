@@ -5,8 +5,10 @@ import VideoDemo from "@/components/sections/VideoDemo";
 import CapabilitiesSection from "@/components/sections/CapabilitiesSection";
 import DeploymentArchitecture from "@/components/sections/DeploymentArchitecture";
 import Industries from "@/components/sections/Industries";
+import dynamic from 'next/dynamic';
 import Footer from "@/components/sections/Footer";
-import ParallaxCubes from "@/components/ui/ParallaxCubes";
+
+const ParallaxCubes = dynamic(() => import('@/components/ui/ParallaxCubes'), { ssr: false });
 import "./styles/capabilities.css";
 
 /**
