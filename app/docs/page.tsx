@@ -8,7 +8,7 @@ import DocsTableOfContents from "@/components/docs/DocsTableOfContents";
 import { docCategories } from "@/lib/data/docs/manifest";
 import { useEffect, useState } from "react";
 import { PRODUCT_NAME } from '@/lib/constants';
-
+import ParallaxCubes from "@/components/ui/ParallaxCubes";
 
 export default function DocsPage() {
   const [activeSection, setActiveSection] = useState("getting-started");
@@ -40,6 +40,7 @@ export default function DocsPage() {
       </div>
 
       <div className="flex flex-1 w-full relative">
+        <ParallaxCubes staticMode={true} />
         <DocsSidebar />
 
         <main className="flex-1 min-w-0 px-6 py-12 md:px-12 lg:px-16 xl:px-24">
@@ -47,7 +48,7 @@ export default function DocsPage() {
             <div className="relative mb-20 mt-8 overflow-hidden">
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-docs-glow-bg blur-[100px] rounded-full pointer-events-none"></div>
               <h1 className="text-5xl md:text-6xl font-light text-slate-900 dark:text-white mb-6 tracking-tight transition-colors duration-200">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-purple-500 to-blue-500 dark:from-rose-400 dark:via-purple-400 dark:to-blue-400"> {PRODUCT_NAME} </span>{" "}
+                <span>{PRODUCT_NAME}</span>{" "}
                 Documentation
               </h1>
               <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl transition-colors duration-200">

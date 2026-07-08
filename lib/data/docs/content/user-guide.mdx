@@ -1,513 +1,106 @@
-This document serves as a comprehensive user guide for **Klarity360 – Insight Agent (Kanerika Inc.)**, outlining the complete lifecycle from trial access to full product adoption and operational usage. It details the trial activation process, feature scope during the evaluation period, usage limitations, and administrative controls. The guide further explains subscription models, purchasing workflow, licensing configuration, and payment enablement. Additionally, it provides step-by-step instructions for onboarding, workspace setup, user management, and day-to-day platform utilization to ensure seamless adoption and effective enterprise deployment.
-
-## Klarity360 – Insight Agent<br/>User Manual
-
-## 1\. Overview
-
-In today’s modern data landscape, enterprises operate across heterogeneous data estates — spanning cloud data platforms, on-premises systems, SaaS applications, and governed analytics layers. While cloud ecosystems such as Microsoft Azure provide robust foundational services for ingestion, transformation, and analytics, organizations increasingly require an intelligence layer that abstracts complexity and enables business users to interact with data intuitively, securely, and at scale.
-
-**Klarity360 – Insight Agent**, developed by Kanerika Inc., is designed to serve as that intelligence layer.
-
-## 1.1 Klarity360 – Insight Agent
-
-_Klarity360 – Insight Agent_ is an enterprise-grade AI analytics platform that enables natural language–driven data analysis, visualization, and insights generation over governed enterprise data. The system is designed with a modular, secure, and scalable architecture, leveraging Microsoft Fabric as the central data and analytics backbone. It integrates:
-
-*   **Natural Language–driven analytics orchestration** using large language models for intent understanding and reasoning.
-*   **Semantic retrieval and context-aware processing** to enrich user queries with relevant data and historical context.
-*   **Dynamic workflow orchestration**, where the backend determines the appropriate execution path based on user intent.
-
-## 2\. Requirements and Environment Readiness
-
-Before you begin, ensure you have the following:
-
-*   1.  Access to a Microsoft Fabric workspace with Member permissions or higher.
-    2.  A sample workload instance.
-    3.  The Klarity360 Insight Agent depends on the following Azure and Microsoft services on enable Klarity360
-
-|   | **Service Name** | **Service Principal App ID** |
-| --- | --- | --- |
-| 1  | Azure SQL Database  |         022907d3-0f1b-48f7-badc-1ba6abab6d66  |
-| 2  | Azure Data Explorer  |         2746ea77-4702-4b45-80ca-3c97e680e8b7  |
-| 3  | Microsoft Graph  |         00000003-0000-0000-c000-000000000000  |
-| 4  | Power BI Service  |         00000009-0000-0000-c000-000000000000  |
-| 5  | Azure Storage  |         e406a681-f3d4-42a8-90b6-c2b029497af1  |
-
-The Above Service Principals need to access the following Service permissions:
-
-*   **Azure Data Explorer**
-    *   user\_impersonation
-*   **Azure SQL Database**
-    *   user\_impersonation
-*   **Microsoft Graph**
-    *   User.Read
-*   **Power BI**
-    *   App.Read.All
-    *   Capacity.Read.All
-    *   Capacity.ReadWrite.All
-    *   Code.AccessAzureDataExplorer.All
-    *   Code.AccessAzureDataLake.All
-    *   Code.AccessAzureKeyvault.All
-    *   Code.AccessFabric.All
-    *   Code.AccessSQL.All
-    *   Code.AccessStorage.All
-    *   Connection.Read.All
-    *   Connection.ReadWrite.All
-    *   Connection.Reshare.All
-    *   Content.Create
-    *   CopyJob.Execute.All
-    *   CopyJob.Read.All
-    *   CopyJob.ReadWrite.All
-    *   CopyJob.Reshare.All
-    *   Dashboard.Execute.All
-    *   Dashboard.Read.All
-    *   Dashboard.ReadWrite.All
-    *   Dashboard.Reshare.All
-    *   DataAgent.Execute.All
-    *   DataAgent.Read.All
-    *   DataAgent.ReadWrite.All
-    *   DataAgent.Reshare.All
-    *   Dataflow.Execute.All
-    *   Dataflow.Read.All
-    *   Dataflow.ReadWrite.All
-    *   Dataflow.Reshare.All
-    *   Datamart.Execute.All
-    *   Datamart.Read.All
-    *   Datamart.ReadWrite.All
-    *   Datamart.Reshare.All
-    *   DataPipeline.Execute.All
-    *   DataPipeline.Read.All
-    *   DataPipeline.ReadWrite.All
-    *   DataPipeline.Reshare.All
-    *   Dataset.Read.All
-    *   Dataset.ReadWrite.All
-    *   DevX.ReadWrite.All
-    *   Environment.Execute.All
-    *   Environment.Read.All
-    *   Environment.ReadWrite.All
-    *   Environment.Reshare.All
-    *   Eventhouse.Execute.All
-    *   Eventhouse.Read.All
-    *   Eventhouse.ReadWrite.All
-    *   Eventhouse.Reshare.All
-    *   Eventstream.Execute.All
-    *   Eventstream.Read.All
-    *   Eventstream.ReadWrite.All
-    *   Eventstream.Reshare.All
-    *   ExternalDataShare.Accept.All
-    *   Fabric.Extend
-    *   Fabric.Extend.IframeSandbox
-    *   Gateway.Read.All
-    *   Gateway.ReadWrite.All
-    *   GraphInstance.Execute.All
-    *   GraphInstance.Read.All
-    *   GraphInstance.ReadWrite.All
-    *   GraphInstance.Reshare.All
-    *   GraphQL.Execute.All
-    *   GraphQLApi.Execute.All
-    *   GraphQLApi.Read.All
-    *   GraphQLApi.ReadWrite.All
-    *   GraphQLApi.Reshare.All
-    *   Item.Execute.All
-    *   Item.ExternalDataShare.All
-    *   Item.Read.All
-    *   Item.ReadWrite.All
-    *   Item.Reshare.All
-    *   ItemMetadata.Read.All
-    *   ItemMetadata.ReadWrite.All
-    *   KQLDatabase.ReadWrite.All
-    *   Lakehouse.Execute.All
-    *   Lakehouse.ExternalDataShare.All
-    *   Lakehouse.Read.All
-    *   Lakehouse.ReadWrite.All
-    *   Lakehouse.Reshare.All
-    *   MetricSet.ReadWrite.All
-    *   Notebook.Execute.All
-    *   Notebook.Read.All
-    *   Notebook.ReadWrite.All
-    *   Notebook.Reshare.All
-    *   Pipeline.Deploy
-    *   Pipeline.Read.All
-    *   Pipeline.ReadWrite.All
-    *   Report.Execute.All
-    *   Report.Read.All
-    *   Report.ReadWrite.All
-    *   Report.Reshare.All
-    *   Scorecard.Execute.All
-    *   Scorecard.Read.All
-    *   Scorecard.ReadWrite.All
-    *   Scorecard.Reshare.All
-    *   SemanticModel.Execute.All
-    *   SemanticModel.ExternalDataShare.All
-    *   SemanticModel.Read.All
-    *   SemanticModel.ReadWrite.All
-    *   SemanticModel.Reshare.All
-    *   SparkJobDefinition.Execute.All
-    *   SparkJobDefinition.Read.All
-    *   SparkJobDefinition.ReadWrite.All
-    *   SparkJobDefinition.Reshare.All
-    *   SQLDatabase.Execute.All
-    *   SQLDatabase.ExternalDataShare.All
-    *   SQLDatabase.Read.All
-    *   SQLDatabase.ReadWrite.All
-    *   SQLDatabase.Reshare.All
-    *   SQLEndpoint.Execute.All
-    *   SQLEndpoint.Read.All
-    *   SQLEndpoint.ReadWrite.All
-    *   SQLEndpoint.Reshare.All
-    *   StorageAccount.Read.All
-    *   StorageAccount.ReadWrite.All
-    *   Tenant.Read.All
-    *   Tenant.ReadWrite.All
-    *   UserDataFunction.Execute.All
-    *   UserDataFunction.Read.All
-    *   UserDataFunction.ReadWrite.All
-    *   VariableLibrary.Execute.All
-    *   VariableLibrary.Read.All
-    *   VariableLibrary.ReadWrite.All
-    *   VariableLibrary.Reshare.All
-    *   Warehouse.Execute.All
-    *   Warehouse.ExternalDataShare.All
-    *   Warehouse.Read.All
-    *   Warehouse.ReadWrite.All
-    *   Warehouse.Reshare.All
-    *   Warehouse.Restore.All
-    *   WarehouseSnapshot.Execute.All
-    *   WarehouseSnapshot.Read.All
-    *   WarehouseSnapshot.ReadWrite.All
-    *   WarehouseSnapshot.Reshare.All
-    *   Workspace.GitCommit.All
-    *   Workspace.GitUpdate.All
-    *   Workspace.Read.All
-    *   Workspace.ReadWrite.All
-
-## 1\. Create a Sample Workload
-
-To enable Klarity360 in your tenant please follow the enablement document provided [here](https://kanerika.sharepoint.com/:w:/s/FLEX/IQBLstKYXlT_R5gOXAxuGcw-AQsOa99JDUDraeE7jj5qSeY?e=4Nf2qL).
-
-1.  Navigate to your desired Microsoft Fabric workspace.
-2.  Click on New item
-3.  From the list, search for and select sample item.
-4.  Click on it.
-
-## 2\. Configure Authentication
-
-To grant this workload access to your Azure resources, you must provide Azure Active Directory credentials.
-
-1.  In the Workload, enter the following required credentials:
-    1.  Tenant ID: The ID of your Azure AD tenant.
-    2.  Client ID: The Application (Client) ID of your Service Principal.
-    3.  Client Secret: The secret value for the Service Principal.
-2.  Click Connect to authenticate.
-
-## 3\. Trial Experience Guide
-
-## 3.1 Purpose of Trial
-
-The purpose of providing a free trial enables users to evaluate the platform’s capabilities, usability, and business relevance before making a financial commitment. It reduces adoption risk, builds trust, and accelerates decision-making by allowing stakeholders to validate real-world value using their own data or controlled datasets.
-
-## 3.2 Trial Entry and Activation
-
-## Step 1: Enable Additional Workloads (One-Time Setting)
-
-Before you can add the migration tool, ensure that custom workloads are enabled in your Fabric tenant:
-
-<ol className="list-decimal pl-6 mb-6 space-y-2 text-docs-text-secondary">
-    <li>
-        <p>In Fabric, navigate to <strong className="font-semibold text-docs-text-primary">Settings</strong> > <strong className="font-semibold text-docs-text-primary">Admin Portal</strong>.</p>
-    </li>
-    <li>
-        <p>Ensure the setting is enabled (or contact your tenant admin to enable it).</p>
-        <p className="mt-2"><img src="/images/extracted/img_db707126.png" alt="" /></p>
-    </li>
-</ol>
-
-## Step 2: Add the Workload from Workload Hub
-
-<ol className="list-decimal pl-6 mb-6 space-y-2 text-docs-text-secondary">
-    <li>
-        <p>Go to the <strong className="font-semibold text-docs-text-primary">Workload Hub</strong> (you can find it in the Fabric navigation menu).</p>
-        <p className="mt-2"><img src="/images/extracted/img_63510573.png" alt="" /></p>
-    </li>
-    <li>
-        <p>Search for <strong className="font-semibold text-docs-text-primary">“Klarity360”</strong></p>
-        <p className="mt-2"><img src="/images/extracted/img_0f22933d.png" alt="" /></p>
-    </li>
-    <li>
-        <p>Click <strong className="font-semibold text-docs-text-primary">Learn More</strong> to install the workload. You can add it either to a specific <strong className="font-semibold text-docs-text-primary">capacity</strong> or directly to a <strong className="font-semibold text-docs-text-primary">workspace</strong> where you intend to use it.</p>
-        <p className="mt-2"><img src="/images/extracted/img_f6544d8c.png" alt="" /></p>
-    </li>
-    <li>
-        <p>Click on <strong className="font-semibold text-docs-text-primary">Add.</strong></p>
-        <p className="mt-2"><img src="/images/extracted/img_5854f9ff.png" alt="" /></p>
-
-    </li>
-</ol>
-
-## Step 3: Start the Trial Through UI
-
-<ol className="list-decimal pl-6 mb-6 space-y-2 text-docs-text-secondary">
-    <li>
-        <p>Inside KLARITY360’s workload UI, users will see a “<strong className="font-semibold text-docs-text-primary">Try Now</strong>” or “<strong className="font-semibold text-docs-text-primary">Start Trial</strong>” button in the toolbar.</p>
-        <ul className="list-disc pl-6 space-y-1 mt-2">
-            <li>This is implemented using a Ribbon action that follows the Microsoft Fabric trial pattern.</li>
-        </ul>
-        <p className="mt-2"><img src="/images/extracted/img_de4cd0df.png" alt="" /></p>
-    </li>
-</ol>
-
-## Step 4: Trial Activation Dialog
-
-When the user clicks **“Start Trial”**, KLARITY360 launches a trial dialog that:
-
-*   Explains the trial duration (30 days)
-*   Lists included credits and usage guidance
-*   Shows any prerequisite steps or feature limits
-
-This dialog is implemented using the Fabric trial template pattern (fabric-trial-experience) so it’s consistent with other Fabric workloads.
-
-## Step 5: What Happens After Trial Starts
-
-After the user confirms in the trial dialog:
-
-<ol className="list-decimal pl-6 mb-6 space-y-2 text-docs-text-secondary">
-    <li>
-        <p>The trial is activated in the backend.</p>
-    </li>
-    <li>
-        <p>The user sees KLARITY360’s main interface.</p>
-        <p className="mt-2"><img src="/images/extracted/img_66b8e020.png" alt="" /></p>
-    </li>
-    <li>
-        <p>The UI displays a trial banner indicating the remaining trial expiration date.</p>
-        <p className="mt-2"><img src="/images/extracted/img_4cfad9a9.png" alt="" /></p>
-    </li>
-    <li>
-        <p>Click on “select your Lakehouse” and you will get the list of Lakehouses available.</p>
-    </li>
-    <li>
-        <p>Select the desired Lakehouse and Click on “Choose”</p>
-    </li>
-</ol>
-
-## Step 6: How Users Use KLARITY360 During Trial
-
-Once the KLARITY360 trial is active, users can:
-
-*   Ask questions in English — KLARITY360 will automatically convert them to NL2SQL queries
-*   Generate charts and visuals automatically
-*   Do data Q&A discovery
-*   Run “Why” analysis for deeper insight
-
-![](/images/extracted/img_25d2eadf.png)
-
-Each action consumes trial credits. A credits status indicator is visible within KLARITY360 UI so users understand how much trial capacity remains.
-
-## 3.3 Trial Capabilities and Limits
-
-During the 30‑day trial, you have full access to the tool’s features, subject to the following limits:
-
-| Capability | Trial Limit |
-| --- | --- |
-| Duration | 30 days from the moment you start the trial |
-| Credits Limit | 5100 Credits (included in free trial) |
-
-These limits allow you to validate the tool against real workloads while ensuring fair usage during evaluation. If you attempt to put queries after exhaustion of 5100 credits, you will be prompted to upgrade.
-
-## 3.4 Trial Duration and Notifications
-
-The tool keeps you informed of your trial status through clear visual indicators:
-
-*   **Home screen banner** – Shows the number of days remaining in your trial (e.g., “14 days left for trial”).
-
-_![](/images/extracted/img_5b0c2dc0.png)_
-
-*   **Authentication screen banner** – When fewer than five days remain, a reminder keeps appearing on the main configuration page, along with an **Upgrade Now** option.
-
-These notifications ensure you are never surprised by the trial ending and can plan your upgrade accordingly.
-
-## 3.5 Upgrading from the Trial
-
-When your trial credits exhaust or you need to continue after the 30‑day period, upgrading is straightforward.
-
-*   **Conversion path:** Click **Upgrade** from any of the Klarity360 Home page. You will be taken to the Azure Marketplace listing for the Klarity360 – Insight Agent, where you can select a paid plan.
-
-![](/images/extracted/img_2b26bee8.png)
-
-*   **Payment options:** You can pay by credit card or link the subscription to your Azure subscription (invoiced through Azure).
-*   **Seamless transition:** After completing the purchase, return to your Fabric workspace. The tool automatically detects the active subscription, removes the trial limits, and displays the licensed version.
-
-## 3.6 What Happens After the Trial Ends?
-
-If your trial expires (either by reaching 30 days or by hitting credit limit) without an upgrade:
-
-*   You will no longer be able to execute new migrations.
-*   Existing insights will still remain available, but **new query generation** is disabled.
-*   A dialog prompts you to upgrade, clearly explaining the next steps.
-
-You can always choose to remove the trial artifacts or contact our support team for assistance.
-
-We hope this trial gives you the confidence to adopt the Klarity360 – Insight Agent for your production workloads. If you have any questions during your evaluation, please reach out to our support portal at [**Support Portal**](https://kanerika.com/datasheet-page/kar-data-intelligence-agent/) .
-
-## <br/>4\. User Navigation in Azure Marketplace
+## **1\. Application Purpose**
 
-### 1\. Open Microsoft Fabric
+Klarity 360 is a reconciliation and validation platform used to compare datasets between source and target systems — any JDBC-supported database (Oracle, SQL Server, PostgreSQL, MySQL, and others) and Microsoft Fabric. It is built for migration and transformation projects where teams need evidence that data landed in the target completely and accurately.
 
-*   Log in to your Microsoft Fabric environment.
-*   Navigate to the **Workloads** section from the left sidebar.
-*   Locate **Klarity360 - Insights (preview)** in the list of available workloads.
+Users define validation processes through configurable table/column mappings, apply comparison rules with tolerance thresholds, execute row-level and rule-level validation, and generate reconciliation reports suitable for sign-off and audit. AI-assisted discovery reduces the manual effort of mapping large schemas.
 
-![](/images/extracted/img_cc31ca32.png)
+## **2\. User Roles**
 
-### 2\. Go to Azure Marketplace
+**QA User** — owns the technical workflow: configures connections, creates processes, defines mappings and rules, executes runs, investigates mismatches, and exports reports. On failure, the QA user determines whether the cause is a genuine data issue, a mapping error, or an over-strict rule.
 
-*   On the Klarity360 workload page, click on “**_Azure Marketplace Offer Page_**” button, it will redirect you to the Azure Marketplace.
-*   Scroll to the bottom of the Marketplace listing and click **_"Get it now”_** on Azure Portal.
+**Business User** — consumes outcomes: reviews pass/fail results on the dashboard, checks reconciliation reports for business-critical fields, and receives emailed reports for sign-off. Does not create or modify processes.
 
-![](/images/extracted/img_61f8659d.png)
+## **3\. High-Level Application Flow**
 
-![](/images/extracted/img_08f32eaf.png)
+The user signs in via Microsoft SSO and lands on the Dashboard. After ensuring the needed source and target connections exist, they create a process through a four-step wizard — connections, mapping, rules, run. The dashboard reflects live execution status, and on completion the user reviews results and downloads or emails the reconciliation report.
 
-### 3\. Subscribe via Azure Portal
+_Login → Dashboard → Connections → New Process (Steps 1–4) → Execution → Report & Analysis → Recon / Email Report_
 
-*   You’ll be redirected to the Azure Portal subscription page.
-*   Select your **Azure subscription** and create or choose a **resource group**.
-*   Choose the **Free Tier** plan:
-*   30-Day Free Trial
-*   5,100 Credits included
+## **4\. Login Flow**
 
-### 4\. Disable Auto-Renewal
+The application offers a single option: **Login with Microsoft**. Clicking it redirects to Microsoft SSO, where organizational credentials are authenticated and access permissions validated — there is no local username/password fallback. On success the user lands on the Dashboard; on failure an error is shown and the user stays on the login page. Expired sessions redirect back to login for re-authentication.
 
-*   To ensure the subscription ends after the free trial, toggle **Auto-renew** to **Off**.
+## **5\. Dashboard**
 
-### 5\. Review and Subscribe
-
-*   Click **Review + Subscribe**.
-*   On the next page, click **"Configure account now"**.
-*   You’ll also receive this link via email.
-*   Clicking this triggers the subscription activation (may time to take a few minutes).
-
-![](/images/extracted/img_e06109ba.png)
-
-### 6\. Return to Fabric
-
-*   After activation, you’ll be redirected back to the Klarity360 workload page.
-*   You can now go to any of your workspaces and **add Klarity360 as a new item**.
-*   The workload will be available under your **tenant's ID**.
-
-### Credit System (Free Tier)
-
-You receive **5,100 credits** during the trial. Here's how credits are consumed:
-
-| **Action Type** | **Credits Used** |
-| --- | --- |
-| Extraction | 1 |
-| Start Visualization | After Extraction |
-| QnA | 3 |
-| Chart Gen/Edit | 7 |
-| Why Analysis | 45 |
-| Deep Analysis | 60 |
+The Dashboard is the operational landing page, showing validation health at a glance.
 
-This guide ensures users can smoothly activate and begin using Klarity360 for AI-powered data insights in Microsoft Fabric.
+**KPI cards:** Total Processes, Rows Compared (cumulative records compared, indicating coverage), Total Rules, Rules Passed, and Rules Failed (rules whose latest run failed, signalling discrepancies to investigate).
 
-## 5\. Workload Manual
+**Recent Processes table:** one row per execution, with Process Name, Process Code, Status (Running/Passed/Failed), Last\_Run, Source–Target, Rules Failed, and Actions.
 
-## Step 1: After signing in, the user can select the desired Microsoft Fabric workspace. In this case, our workspace is **_“Klarity360 – Insight Agent”._**
+**Status logic:** a process is **Passed** when all rules pass, **Failed** when at least one critical rule fails. Criticality is set per rule during configuration; non-critical failures are reported but don't fail the run.
 
-**![](/images/extracted/img_c5eabdc9.png)**
+## **6\. Dashboard Actions**
 
-****Step 2:** Click on “New Item”**
+Completed processes (Passed or Failed) share these actions: **View** (opens Report & Analysis — _not in current release_), **Copy** (duplicates the configuration), **Export Config**, **Recon Report**, **Email Report**, and **Delete** (with confirmation).
 
-*   **Search for **_“Klarity360 – Insight Agent (preview)”_****
-*   **Click on it.**
+A **Passed** process additionally offers **Schedule & Run** (reopens at the execution step). A **Failed** process instead offers **Retry**, which re-runs the identical configuration and updates the dashboard on completion — and even failed runs keep their partial outputs and failure reports available for investigation. A **Running** process offers View, Refresh, Copy, and Export Config; Pause and Stop are planned but not in the current release, so a running execution cannot be interrupted.
 
-**![](/images/extracted/img_10ca1752.png)**
+## **7\. Connections Module**
 
-*   **If the Tenant ID is not found in the database, the user will receive an error indicating the “Tenant ID is not present.”**
-*   **If the Tenant ID is found but the associated subscription has expired, the user will receive an error message stating “Subscription/Trial has expired.”.**
+Connections are reusable and selected by name inside processes. The application supports **any database with a JDBC driver** (Oracle, SQL Server, PostgreSQL, MySQL, etc.) and **Microsoft Fabric**.
 
-**![](/images/extracted/img_8452eded.png)**
+**Create:** the user completes a form with Connection Name, Connection Type, credentials, and server/file details — the fields adapt to the type (a JDBC connection needs host, port, database/service name, and credentials; Fabric needs workspace and lakehouse details with the appropriate auth method).
 
-## **Step 3:** Create **Klarity360 Item**
+**Validate: Test Connection** attempts a live connection. Success makes the connection selectable in processes; failure shows a details option with the underlying error so the user can correct and re-test.
 
-**![](/images/extracted/img_87fc200e.png)**
+**Delete:** blocked when the connection is referenced by any process — _“Connection is associated with one or more processes and cannot be deleted.”_ — preventing orphaned processes that would fail at runtime.
 
-****Step 4:** The Workload Interface will load.**
+## **8\. New Process Creation**
 
-1.  **Click on **“Select Your Lakehouse”****
-2.  **This will display all the available Lakehouses in the particular Workspace**
-3.  **Select the desired Lakehouse and Click on “Choose”**
+**Step 1 — DB Connection.** Enter Process Name and Description, select Source and Target connections. Mandatory fields and connection accessibility are validated before Step 2, so mapping never starts against an unreachable database.
 
-**![](/images/extracted/img_264042be.png)**
+**Step 2 — Table & Column Mapping.** Two approaches: **Auto Discover with AI** inspects both schemas and suggests table pairs, mapping columns via names, metadata similarity, and structural matching; suggestions are reviewable — accept, adjust, or remove them, with unconfident matches left for manual handling. **Add Mapping Manually** lets the user pick source/target tables and map columns individually — the fallback for renamed or restructured schemas. Mandatory mappings and metadata availability are validated before Step 3.
 
-****Step 5:** Once the KLARITY360 trial is active, users can:**
+**Step 3 — Comparison Rules.** Each rule has a name, description, tolerance options, and report options. Three rule types:
 
-*   **Ask questions in English — KLARITY360 will automatically convert them to NL2SQL queries**
-*   **Generate charts and visuals automatically**
-*   **Do data Q&A discovery**
-*   **Run “Why” analysis for deeper insight**
+*   **Case Sensitivity** — whether “SMITH” vs “Smith” counts as a mismatch.
+*   **Null Check** — flags values null on one side but populated on the other, catching silent data loss.
+*   **Tolerance Validation** — numeric values may differ within a threshold, absorbing rounding/precision differences.
 
-**![](/images/extracted/img_ef7f736c.png)**
+Output scope per rule: Missing records only, Value mismatches only, or All differences.
 
-## **6\. Support and Service Level Agreement**
+**Step 4 — Run Process.** Only **Manual Run** is supported currently. **Run Now** saves the configuration, creates an execution instance with a unique Process Code, and starts the validation engine.
 
-## **6.1 Support Contact**
+## **9\. Process Execution**
 
-**For technical assistance, migration support, or to report issues, contact:<br/>**Kanerika Support Portal:** [https://kanerika.com/datasheet-page/kar-data-intelligence-agent/](https://kanerika.com/datasheet-page/kar-data-intelligence-agent/)**
+An execution moves from **Running** to **Passed** or **Failed**, with the dashboard updating dynamically. The engine runs four sequential stages:
 
-**E-Mail: [klarity360.insight.support@kanerika.com](mailto:klarity360.insight.support@kanerika.com)**
+1.  **Schema Validation** — column presence, data types, structural compatibility; broken mappings fail fast before data is read.
+2.  **Data Validation** — row-level comparison using the compare key columns, identifying missing records, duplicates, and value mismatches.
+3.  **Rule Validation** — applies the configured business rules, recording pass/fail per rule.
+4.  **Tolerance Validation** — reclassifies numeric differences within threshold as matches.
 
-## **6.2 Service Level Agreement**
+If a stage hits an unrecoverable error (e.g., a connection dropping mid-run), the execution is marked Failed and outputs generated so far are preserved.
 
-### ****6.2.1** **Priority Level Definitions****
+## **10\. Report Generation & Analysis**
 
-**Kanerika utilizes a tiered incident response logic to address technical urgency and business impact within the Microsoft Fabric environment.**
+After execution, the system generates the recon report, per-rule analysis, mismatch output, and summary metrics.
 
-*   ****P0 – Critical: Total System Outage.** A complete failure that prevents all users from accessing the workload or blocks all analysis capabilities.
-    
-    *   _Example 1:_ A total failure of the Fabric Workload SDK integration, preventing the Klarity360 interface from loading within the Fabric portal.
-    *   _Example 2:_ A complete failure of the **Usage & Subscription DB (PostgreSQL RDS)**, which prevents the credit system from authorizing any user operations.
-    
-    **
-*   ****P1 – High: Major Functionality Degradation.** Critical features are unavailable to multiple users with no viable workaround.
-    
-    *   _Example 1:_ Failure of the **Deep Analysis** or **Why Analysis** modules, halting high-resource, credit-intensive diagnostic operations.
-    *   _Example 2:_ Synchronization failures between the Azure Marketplace subscription and the Fabric environment, causing incorrect credit exhaustion errors.
-    
-    **
-*   ****P2 – Medium: Partial Disruption.** Functional errors exist, but a viable workaround allows the user to continue activities.
-    
-    *   _Example 1:_ Errors in specific Plotly chart generations where the user can still access the raw data via the "Technical View."
-    *   _Example 2:_ Intermittent latency in SQL generation that can be resolved by re-submitting the natural language query.
-    
-    **
-*   ****P3 – Low: General Inquiries.** Minor usability issues, documentation clarifications, or enhancement requests.
-    
-    *   _Example 1:_ Clarification requests regarding training data CRUD operations.
-    *   _Example 2:_ Suggestions for UI/UX cosmetic improvements.
-    
-    **
+**Report & Analysis page** _(not fully implemented)_ — will present rule outcomes, comparison statistics, and failed records in-app.
 
-### **6.2.2 Response Time Targets and Performance Commitments**
+**Recon Report** downloads an Excel workbook with these sheets:
 
-**In cloud-native environments, time-bound acknowledgments are necessary to maintain enterprise trust. Kanerika commits to the following initial response time targets:**
+**Summary** — Process Code, Rule Name, Status (Match/Mismatch), Report Run Date, Rule Description, Database Type, Table Name, Field Count, Records Count, Matched Records, Mismatch Records, Match Accuracy (%), Value Differences, Top 5 Columns Cover (%), Missing Records, and Duplicate Records.
 
-| Priority Level | Initial Response Time |
-| --- | --- |
-| **P0 – Critical** | Within 4 hours |
-| **P1 – High** | Within 8 hours |
-| **P2 – Medium** | Within 24 hours |
-| **P3 – Low** | Within 4 business days |
+**Differences** — row-level mismatch detail: Compare Key Columns, Key Values, Mismatch Columns, Source and Target Values side by side, Mismatch Repeat Count, and Weightage % (contribution to the overall result). Repeated high-weightage patterns typically indicate systematic transformation issues rather than isolated errors.
 
-****Definition of Response Time:** The duration required for Kanerika support personnel to acknowledge receipt of the ticket, assess the technical severity, and initiate a formal investigation.**
+**Missing (Source) / Missing (Target)** — records present in one dataset but absent from the other.
 
-****External Dependencies:** While Kanerika strives for rapid resolution, resolution times are subject to external variables. These include **Azure OpenAI GPT-4 rate limits**, **OneLake availability**, and Microsoft Fabric capacity constraints**
+**Duplicate (Source) / Duplicate (Target)** — duplicates in each dataset; both sheets list Compare Key Columns, the duplicated Key Values, and the Repeated Count.
 
-## **Training Data Tutorials**
+**Email Report** opens a popup for recipient addresses and a message body (subject line is pre-set) and sends the workbook as an attachment — the standard delivery path for Business users.
 
-**
+## **11\. Notifications & Error Handling**
 
-Below are video tutorials demonstrating how to manage and curate your custom training data in Klarity360:
+Email notifications are sent on process completion, process failure, and report generation.
 
-<div className="docs-video-grid"><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/oXPtLY3Gr2c" title="Klarity360 Tutorial: How to View, Add, Update &amp; Delete Training Data | Lakehouse Guide" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Viewing and Managing Training Data</h3><p className="docs-video-card-desc">A comprehensive guide to curating custom question-query pairs so the AI agent better understands your specific Lakehouse context.</p></div></div><div className="docs-video-card"><div className="docs-video-card-player"><iframe src="https://www.youtube.com/embed/u5GoM5ODQ3I" title="Klarity360 Tutorial: How to Delete Training Data (Question–Query Pair)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe></div><div className="docs-video-card-content"><h3 className="docs-video-card-title">Deleting Training Data</h3><p className="docs-video-card-desc">A brief video demonstrating how to remove obsolete question-query pairs from the training data dashboard.</p></div></div></div>
+**Connection failure** — an error is shown and retry is allowed; a mid-execution drop marks the run Failed, after which the user can fix the connection and Retry from the dashboard. **Rule failure** — a critical rule failing marks the process Failed; this is an expected validation outcome, and failure reports remain available for investigation. **Report failure** — the user is notified so generation can be re-triggered rather than silently missing output.
 
-**
+## **12\. End-to-End Use Case**
+
+A QA user validates a CUSTOMERS table migrated from Oracle to a Fabric Lakehouse. They create and test both connections, then build a process: Auto Discover maps the table and columns, a Null Check is set on customer ID and email, and a Tolerance rule absorbs rounding on account balance. The run fails — emails populated in Oracle are null in Fabric. The Differences sheet pinpoints the affected keys; after the migration team fixes the load, Retry passes and the report is emailed to the Business user for sign-off.
+
+## **13\. Summary**
+
+Klarity 360 covers the full migration-validation lifecycle — connection management, AI-assisted mapping, rule-based comparison, execution monitoring, and audit-ready reconciliation reporting — giving QA users row- and rule-level diagnostics and Business users clear, shareable pass/fail outcomes.

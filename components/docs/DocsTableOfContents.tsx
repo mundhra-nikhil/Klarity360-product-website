@@ -76,7 +76,7 @@ export default function DocsTableOfContents({
         top: `${activeEl.offsetTop}px`,
         height: `${activeEl.offsetHeight}px`,
       });
-      activeEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      // Removed scrollIntoView to prevent main page jumping
     }
   }, [propActiveSection, activeSection]);
 

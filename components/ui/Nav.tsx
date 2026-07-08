@@ -69,10 +69,10 @@ export default function Nav({ showDocsSearch = false }: NavProps) {
           width={140}
           height={40}
           priority
-          className="h-9 w-auto object-contain"
+          className={`h-9 w-auto object-contain ${pathname === "/" ? "" : "dark:invert-0 invert"}`}
         />
         {showDocsSearch && (
-          <span className="text-black dark:text-white font-bold text-2xl hidden sm:inline-block">Docs</span>
+          <span className="text-black dark:text-white font-medium text-[19px] leading-none -translate-y-[3px] hidden sm:inline-block" style={{ fontFamily: "var(--font-poppins), sans-serif", letterSpacing: "-0.01em" }}>Documentation</span>
         )}
       </Link>
 
@@ -82,27 +82,22 @@ export default function Nav({ showDocsSearch = false }: NavProps) {
             Home
           </Link>
         </li>
-        <li className="nav-dropdown-wrapper">
-          <Link href="/docs" className={`nav-dropdown-trigger ${pathname?.startsWith("/docs") ? "active" : ""}`}>
+        <li>
+          <Link href="/docs" className={pathname?.startsWith("/docs") ? "active" : ""}>
             Resources
           </Link>
-          <div className="nav-dropdown-menu">
-            <Link href="/docs/whitepaper" className={pathname === "/docs/whitepaper" ? "active" : ""}>
-              About
-            </Link>
-            <Link href="/docs/security-document" className={pathname === "/docs/security-document" ? "active" : ""}>
-              Security
-            </Link>
-            <Link href="/docs" className={pathname === "/docs" ? "active" : ""}>
-              Documentation
-            </Link>
-          </div>
         </li>
       </ul>
 
       <div className="nav-right">
         {showDocsSearch && <DocsSearch />}
         {showDocsSearch && <ThemeToggle />}
+        <Link 
+          href="https://sit-klarity360.kanerika.com/login?returnUrl=%2Fdashboard"
+          className={`nav-cta-desktop flex items-center justify-center px-4 py-2 text-sm font-medium ${pathname === "/" ? "text-white" : "text-black dark:text-white"} glass-bg hover:opacity-90 transition-all active:opacity-80 active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.15),inset_0_1px_2px_rgba(0,0,0,0.1)] dark:active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.2)] rounded-md`}
+        >
+          Login
+        </Link>
         <Link 
           href="https://kanerika.com/contact-us/" 
           target="_blank" 
@@ -133,29 +128,21 @@ export default function Nav({ showDocsSearch = false }: NavProps) {
               Home
             </Link>
           </li>
-          <li className="mobile-dropdown-wrapper">
-            <span className="mobile-dropdown-title">Resources</span>
-            <ul className="mobile-submenu">
-              <li>
-                <Link href="/docs/whitepaper" className={pathname === "/docs/whitepaper" ? "active" : ""} onClick={() => setIsOpen(false)}>
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/security-document" className={pathname === "/docs/security-document" ? "active" : ""} onClick={() => setIsOpen(false)}>
-                  Security
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs" className={pathname === "/docs" ? "active" : ""} onClick={() => setIsOpen(false)}>
-                  Documentation
-                </Link>
-              </li>
-            </ul>
+          <li>
+            <Link href="/docs" className={pathname?.startsWith("/docs") ? "active" : ""} onClick={() => setIsOpen(false)}>
+              Resources
+            </Link>
           </li>
         </ul>
 
-        <div className="mobile-nav-cta">
+        <div className="mobile-nav-cta flex flex-col gap-3">
+          <Link 
+            href="https://sit-klarity360.kanerika.com/login?returnUrl=%2Fdashboard"
+            className={`flex items-center justify-center px-4 py-3 text-sm font-semibold ${pathname === "/" ? "text-white" : "text-black dark:text-white"} glass-bg hover:opacity-90 transition-all active:opacity-80 active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.15),inset_0_1px_2px_rgba(0,0,0,0.1)] dark:active:shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(0,0,0,0.2)] rounded-md w-full text-center`}
+            onClick={() => setIsOpen(false)}
+          >
+            Login
+          </Link>
           <Link 
             href="https://kanerika.com/contact-us/" 
             target="_blank" 

@@ -44,10 +44,14 @@ const docsContentDir = path.join(__dirname, '..', '..', 'lib', 'data', 'docs', '
 function cleanHtmlForMigration(html) {
   let cleanHtml = html;
 
-  // 1. Convert `<p><strong>...</strong></p>` and `<p><b>...</b></p>` into `<h2>...</h2>`
+  // 0. Shift existing headers down to maintain hierarchy when h1 becomes h2
+  cleanHtml = cleanHtml.replace(/<h3[^>]*>(.*?)<\/h3>/gi, '<h4>$1</h4>');
+  cleanHtml = cleanHtml.replace(/<h2[^>]*>(.*?)<\/h2>/gi, '<h3>$1</h3>');
+
+  // 1. Convert `<p><strong>...</strong></p>` and `<p><b>...</b></p>` into `<h3>...</h3>`
   cleanHtml = cleanHtml.replace(/<p>\s*<(strong|b)>((?:(?!<\/?p>).)*?)<\/\1>\s*<\/p>/gi, (match, tag, content) => {
     const cleanContent = content.replace(/<br\s*\/?>\s*$/i, '');
-    return `<h2>${cleanContent}</h2>`;
+    return `<h3>${cleanContent}</h3>`;
   });
 
   // 2. Convert raw `<h1>` to `<h2>` for consistency.
@@ -82,7 +86,7 @@ function cleanHtmlForMigration(html) {
   let changed = true;
   while(changed) {
      changed = false;
-     cleanHtml = cleanHtml.replace(/^(\s*<a[^>]*><\/a>\s*|\s*)*<h2[^>]*>(.*?)<\/h2>/i, (match, prefix, content) => {
+     cleanHtml = cleanHtml.replace(/^(\s*<a[^>]*><\/a>\s*|\s*)*<(h2|h3)[^>]*>(.*?)<\/\2>/i, (match, prefix, tag, content) => {
         if (isJunk(content)) {
            changed = true;
            return prefix || '';
@@ -102,11 +106,11 @@ function cleanHtmlForMigration(html) {
   // It also requires <th> for markdown tables to be generated.
   cleanHtml = cleanHtml.replace(/<table[\s\S]*?<\/table>/gi, (tableHtml) => {
     let clean = tableHtml
-      .replace(/(<\/p>|<\/h2>)\s*(<p[^>]*>|<h2[^>]*>)/gi, '$1<br/><br/>$2')
+      .replace(/(<\/p>|<\/h[23]>)\s*(<p[^>]*>|<h[23][^>]*>)/gi, '$1<br/><br/>$2')
       .replace(/<p[^>]*>/gi, '')
       .replace(/<\/p>/gi, '')
-      .replace(/<h2[^>]*>/gi, '<strong>')
-      .replace(/<\/h2>/gi, '</strong>');
+      .replace(/<h[23][^>]*>/gi, '<strong>')
+      .replace(/<\/h[23]>/gi, '</strong>');
       
     // Convert the first <tr>'s <td> elements into <th> elements
     let isFirstRow = true;
