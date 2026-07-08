@@ -248,8 +248,8 @@ export default async function SectorPage({ params }: PageProps) {
     <div
       className={`${playfair.variable} ${inter.variable} font-sans min-h-screen bg-[#F7F6F2] text-[#1c1917] flex flex-col selection:bg-slate-900/10`}
     >
-      {/* Dark navigation wrapper to fit white header menu */}
-      <div className="docs-nav-wrapper sticky top-0 h-[68px] z-50 bg-[#0A0A0A] border-b border-slate-900 transition-colors duration-200">
+      {/* Navigation wrapper using Docs header styling */}
+      <div className="docs-theme docs-nav-wrapper sticky top-0 h-[68px] z-50 bg-docs-header-bg backdrop-blur-xl border-b border-docs-header-border transition-colors duration-200">
         <Nav />
       </div>
 
